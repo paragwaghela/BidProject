@@ -1,0 +1,17 @@
+<section data-ng-controller="TestController" data-ng-init="findOne()">
+  <!--<span>{{test.created | date:'medium'}}</span> /
+  <span>{{test.user.name}}</span>-->
+  <div class="pull-middle" >
+  <h2>{{test.title}}</h2>
+  <div><h4>Content:{{test.content}}</h4></div>
+  <div><h4>Marks:{{test.marks}}</h4></div>
+  <div data-ng-if="hasAuthorization(test)">
+    <a class="btn" href="/#!/tests/{{test._id}}/edit">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn" data-ng-click="remove(test);">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  </div>
+</section>
