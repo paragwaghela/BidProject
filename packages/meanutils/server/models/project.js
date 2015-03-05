@@ -58,4 +58,4 @@ ProjectSchema.statics.load = function(id, cb) {
     }).populate('user', 'name username').exec(cb);
 };
 
-mongoose.model('Project', ProjectSchema);
+mongoose.model('Projects', ProjectSchema);

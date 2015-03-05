@@ -1,12 +1,13 @@
-'use strict';
-var project = require('../controllers/project');
+'use strict'
+
+//var project = require('../controllers/project');
 
 // The Package is past automatically as first parameter
 module.exports = function(Meanutils, app, auth, database) {
 
     //FRO PROJECT
-    app.get('/meanutils/example/project',project.all);
-    app.post('/meanutils/example/project',project.create);
+   // app.get('/meanutils/example/project',project.all);
+    //app.post('/meanutils/example/project',project.create);
 
 /*
     app.get('/meanutils/example/project', function(req, res, next) {

@@ -6,7 +6,8 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'G
         $scope.package = {
             name: 'meanutils'
         };
-        $scope.menuUtil = ['Project','User'];
+        $scope.menuUtil = [ {title: 'Project', link:'#!/meanutils/example/project'},
+                            {title:'User', link: ''}];
         $scope.all = function(){
 
         };
