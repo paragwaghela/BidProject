@@ -18,23 +18,52 @@ var ProjectSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    createdBy :{
+        type: String,
+        trim: true
+    },
+    status: {
+        type : String,
+        default : 'New'
+    },
     title: {
         type: String,
         required: true,
         trim: true
     },
-    expiryDate: {
+    deadline: {
         type: Date
     },
-    users: {
-        type: Array,
-        ref: 'User'
+    discription :{
+        type : String,
+        trim :true
     },
-    bid: {
-        type: Number,
-        required: true
+    price:{
+        type: Number
     }
 });
+/*
+var ProjectSchema = new Schema({
+    created: {
+        type: Date,
+        default: Date.now
+    },
+    title: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    content: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    user: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    }
+});
+*/
 
 /**
  * Validations
