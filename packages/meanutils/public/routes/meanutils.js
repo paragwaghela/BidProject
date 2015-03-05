@@ -3,7 +3,7 @@
 angular.module('mean.meanutils').config(['$stateProvider',
     function($stateProvider) {
         $stateProvider.state('meanutils', {
-            url: '/meanutils/example',
+            url: '/meanutils',
             templateUrl: 'meanutils/views/index.html'
         })
         .state('project', {
@@ -15,5 +15,4 @@ angular.module('mean.meanutils').config(['$stateProvider',
             templateUrl: 'meanutils/views/addProject.html'
         });
     }
-
 ]);
