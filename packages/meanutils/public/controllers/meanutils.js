@@ -7,10 +7,12 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'G
         $scope.package = {
             name: 'meanutils'
         };
+
         $scope.menuUtil = [ {title: 'Project', link:'#!/meanutils/example/project'},
                             {title:'User', link: ''},
                             {title: 'Add project',link: '#!/meanutils/example/project/add' }
                           ];
+
 
         MenuService.query(function (menu) {
             console.log('Inside----');
@@ -32,11 +34,11 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'G
                     $location.path('meanutils/example/project/');
                 });
 
-
                 this.title = '';
                 this.discription = '';
             } else {
                 $scope.submitted = true;
+
 
             }
         };
