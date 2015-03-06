@@ -40,10 +40,11 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'G
 
             }
         };
-
         $scope.all = function () {
             projectService.query(function (projects) {
                 $scope.projects = projects;
+                console.log("Projects",projects);
+
             });
         };
     }
