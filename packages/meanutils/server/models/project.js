@@ -1,7 +1,7 @@
 /**
  * Created by sumasoft on 3/4/15.
  */
-'use strict'
+'use strict';
 
 /**
  * Module dependencies.
