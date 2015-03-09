@@ -1,14 +1,20 @@
 'use strict';
 
-angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'Global', 'MenuService','ProjectService',
-    function($scope, Global, MenuService, projectService) {
-
+angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','Global', 'MenuService','ProjectService','$stateParams',
+    function($scope, $location,Global, MenuService, ProjectService, $stateParams) {
+        $scope.project={};
         $scope.global = Global;
         $scope.package = {
             name: 'meanutils'
         };
-
-        $scope.menuUtil = [ {title: 'Project', link:'#!/meanutils/example/project'},
+        /*$scope.tinyoptions = {
+            resize: false,
+            width: 400,  // I *think* its a number and not '400' string
+            height: 300,
+            plugins: 'print textcolor',
+            toolbar: "undo redo styleselect bold italic print forecolor backcolor"
+        };*/
+        $scope.menuUtil = [ {title: 'Project', link:'#!/meanutils/example/projects'},
                             {title:'User', link: ''},
                             {title: 'Add project',link: '#!/meanutils/example/project/add' }
                           ];
@@ -23,7 +29,8 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'G
 
         $scope.addProject = function(isValid) {
             if (isValid) {
-                var project = new projectService({
+
+                var project = new ProjectService({
                     title: this.title,
                     deadline: this.deadline,
                     discription: this.discription,
@@ -31,22 +38,31 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'G
                 });
                 console.log(project);
                 project.$save(function (response) {
-                    $location.path('meanutils/example/project/');
+                    $scope.project=response;
+                    $location.path('/meanutils/example/project/'+response._id);
                 });
-
                 this.title = '';
                 this.discription = '';
+                this.deadline='';
+                this.price='';
             } else {
                 $scope.submitted = true;
-
-
             }
         };
+
         $scope.all = function () {
-            projectService.query(function (projects) {
+            ProjectService.query(function (projects) {
                 $scope.projects = projects;
                 console.log("Projects",projects);
-
+            });
+        };
+        $scope.findOne = function() {
+            window.alert($scope.project);
+            window.alert($stateParams.projectId);
+            ProjectService.get({
+                projectId: $stateParams.projectId
+            }, function(project) {
+                $scope.project = project;
             });
         };
     }

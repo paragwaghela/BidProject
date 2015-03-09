@@ -1,0 +1,17 @@
+<div ng-controller="MeanutilsController" data-ng-init="findOne()">
+    <h1>view project</h1>
+    <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
+    <span>{{project.created | date:'medium'}}</span>
+    <h2>{{project.title}}</h2>
+    <div data-ng-if="hasAuthorization(project)">
+        <a class="btn" href="/#!/articles/{{project._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" data-ng-click="remove(project);">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div>{{project.discription}}</div>
+    <div>{{project.deadline}}</div>
+    <div>{{project.}}</div>
+</div>

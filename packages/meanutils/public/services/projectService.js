@@ -7,7 +7,7 @@
 angular.module('mean.meanutils').factory('ProjectService', ['$resource',
     function($resource) {
         return $resource('projects/:projectId', {
-            articleId: '@_id'
+            projectId: '@_id'
         }, {
             update: {
                 method: 'PUT'
