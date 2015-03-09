@@ -1,34 +1,21 @@
 <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
 <div data-ng-controller="MeanutilsController" data-ng-init="all()">
-    <!--<div class="list-group">
-        <a data-ng-repeat="project in projects" data-ng-href="#!/projects/{{project._id}}" class="list-group-item">
-            <small class="list-group-item-text">
-                Posted on
-                <span data-ng-bind="project.created | date:'mediumDate'"></span>
-                by
-                <span data-ng-bind="project.user.displayName"></span>
-            </small>
-            <h4 class="list-group-item-heading" data-ng-bind="project.title"></h4>
-            <p class="list-group-item-text" data-ng-bind="project.description"></p>
-            <p class="list-group-item-text" data-ng-bind="project.deadline"></p>
-            <p class="list-group-item-text" data-ng-bind="project.status"></p>
-            <p class="list-group-item-text" data-ng-bind="project.price"></p>
-        </a>
-    </div>-->
-    <table st-table="rowCollection" class="table table-striped">
+    <div class="col-md-3">
+        <input type="text" placeholder="Search" ng-model="selected" typeahead="pro.title + '---Rs.' + pro.price for pro in filteredTodos | filter:$viewValue | limitTo:8" class="form-control">
+    </div>
+    <table class="table table-striped">
         <thead>
-        <tr>
-            <th>Title</th>
-            <th>Discription</th>
-            <th>Start Date</th>
-            <th>Deadline</th>
-            <th>status</th>
-            <th>Price</th>
-        </tr>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>Deadline</th>
+                <th>status</th>
+                <th>Price</th>
+            </tr>
         </thead>
         <tbody>
-        <div class="list-group">
-        <tr ng-repeat="project in projects" data-ng-href="#!/projects/{{project._id}}" >
+            <tr ng-repeat="project in filteredTodos | filter: selected" data-ng-href="#!/projects/{{project._id}}" >
 
                 <td>{{project.title}}</td>
                 <td>{{project.discription}}</td>
@@ -38,8 +25,7 @@
                 <td>Rs.{{project.price}}</td>
 
             </tr>
-            <div>
-            </tbody>
-        </table>
-        <!--<h1 data-ng-hide="!projects || projects.length">No articles yet. <br> Why don't you <a href="/#!/projects/create">Create One</a>?</h1>-->
+        </tbody>
+    </table>
+    <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" num-pages="numofPages" max-size="maxSize" items-per-page ="itemsPerPage"></pagination>
 </div>

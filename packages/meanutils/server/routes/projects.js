@@ -16,7 +16,7 @@ var hasAuthorization = function(req, res, next) {
 module.exports = function(Meanutils, app, auth) {
 
     app.route('/projects')
-        .get(projects.all)
+        .get(projects.count, projects.all)
         .post(auth.requiresLogin, projects.create);
 
    /* app.route('/projects/:projectId')
