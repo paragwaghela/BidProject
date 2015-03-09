@@ -1,17 +1,18 @@
+<div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
 <div ng-controller="MeanutilsController" data-ng-init="findOne()">
     <h1>view project</h1>
-    <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
-    <span>{{project.created | date:'medium'}}</span>
-    <h2>{{project.title}}</h2>
-    <div data-ng-if="hasAuthorization(project)">
-        <a class="btn" href="/#!/articles/{{project._id}}/edit">
-            <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn" data-ng-click="remove(project);">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
-    </div>
+
+    Project Posted By
+    <div>{{global.user.username}}</div>
+
+    <h3>{{project.title}}</h3>
+    <span><b>Project Discription:</b></span>
     <div>{{project.discription}}</div>
-    <div>{{project.deadline}}</div>
-    <div>{{project.}}</div>
+    <b>Project DeadLine</b>
+    <div>{{project.deadline| date:'mediumDate' }}</div>
+    <b>Project Budget</b>
+    <div>{{project.price}}</div>
+
+    <h3>Bid</h3>
+    <div>8</div>
 </div>

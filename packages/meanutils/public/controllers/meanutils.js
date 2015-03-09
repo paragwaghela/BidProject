@@ -52,6 +52,9 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         };
 
         MenuService.query(function (menu) {
+            console.log('Inside----');
+            console.log(menu[0].menuName);
+            console.log(menu[0].submenu);
             $scope.menuUtil = [{title: menu[0].menuName, subMenu: menu[0].submenu}];
         });
 
@@ -70,8 +73,6 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                     $location.path('/meanutils/example/project/' + response._id);
 
                 });
-
-
                 this.title = '';
                 this.discription = '';
                 this.deadline = '';
@@ -91,9 +92,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             });
         };
 
-        $scope.findOne = function () {
-            window.alert($scope.project);
-            window.alert($stateParams.projectId);
+        $scope.findOne = function() {
             ProjectService.get({
                 projectId: $stateParams.projectId
             }, function (project) {

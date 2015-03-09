@@ -1,5 +1,6 @@
 <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
 <div data-ng-controller="MeanutilsController" data-ng-init="all()">
+
     <div class="col-md-3">
         <input type="text" placeholder="Search" ng-model="selected" typeahead="pro.title + '---Rs.' + pro.price for pro in filteredTodos | filter:$viewValue | limitTo:8" class="form-control">
     </div>
@@ -16,8 +17,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="project in filteredTodos | filter: selected" data-ng-href="#!/projects/{{project._id}}" >
-
-                <td>{{project.title}}</td>
+                <td><a data-ng-href="#!/meanutils/example/project/{{project._id}}">{{project.title}}</a></td>
                 <td>{{project.discription}}</td>
                 <td>{{project.created|date:'mediumDate'}}</td>
                 <td>{{project.deadline| date:'mediumDate'}}</td>
