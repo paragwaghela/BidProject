@@ -1,20 +1,24 @@
 <div class="page-header" data-ng-controller="MeanutilsController">
 
-    <div class="logo pull-left">
-        <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">Home Page</a>
+    <div class="logo pull-left col-md-1">
+        <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">Freelancer</a>
     </div>
+    <div class="col-md-1"></div>
     <div class="left pull-left">
         <ul class="navbar-nav nav">
+
             <li data-ng-repeat="item in menuUtil" role="presentation" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+
                     {{item.title}} <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu" data-ng-repeat="sub in item.subMenu" role="menu">
-                    <li>{{sub}}</li>
+                <ul class="dropdown-menu" data-ng-repeat="sub in item.subMenu " role="menu">
+                    <li><a href="#!/meanutils/example/project">{{sub}}</a></li>
                 </ul>
             </li>
         </ul>
     </div>
+
     <div class="account">
         <div class="text-edit">
             <div class="pull-right" data-ng-show="global.authenticated" mean-token-editable></div>
