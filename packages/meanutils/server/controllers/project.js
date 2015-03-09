@@ -62,8 +62,10 @@ exports.all=function(req,res){
       }else
       var arr = [{projects: projects, count: count}];
 
-        res.json(arr);
+
+        res.send(arr);
   });
+
 };
 
 exports.show = function(req, res) {

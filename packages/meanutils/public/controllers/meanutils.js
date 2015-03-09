@@ -4,6 +4,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
     function($scope, $location,Global, MenuService, ProjectService, $stateParams) {
         $scope.project = {};
 
+
         $scope.global = Global;
 
         $scope.package = {
@@ -13,13 +14,15 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.filteredTodos = [];
         $scope.currentPage = 1;
         $scope.maxSize = 2;
-        $scope.itemsPerPage = 5;
+
+        $scope.itemsPerPage= 5;
+
 
         var pagCount,
             begin = 0;
 
         $scope.all = function () {
-            projectService.query({
+            ProjectService.query({
                 begin: begin
             }, function (projects) {
 
@@ -33,13 +36,16 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
                 $scope.$watch('currentPage + numPerPage', function () {
                     $scope.filteredTodos = [];
-                    var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
 
-                    projectService.query({
+
+                    var begin = (($scope.currentPage -1) * $scope.itemsPerPage);
+
+
+                    ProjectService.query({
                         begin: begin
                     }, function (data) {
                         $scope.filteredTodos = data[0].projects;
-                        $scope.filteredTodos.length;
+
                     });
                 });
             });
@@ -61,10 +67,11 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 console.log(project);
                 project.$save(function (response) {
 
-                    $scope.project = response;
                     $location.path('/meanutils/example/project/' + response._id);
 
                 });
+
+
                 this.title = '';
                 this.discription = '';
                 this.deadline = '';
@@ -74,12 +81,16 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             }
         };
 
-        $scope.all = function () {
-            ProjectService.query(function (projects) {
-                $scope.projects = projects;
-                console.log("Projects", projects);
+        $scope.findOne = function () {
+            window.alert($scope.project);
+            window.alert($stateParams.projectId);
+            ProjectService.get({
+                projectId: $stateParams.projectId
+            }, function (project) {
+                $scope.project = project;
             });
         };
+
         $scope.findOne = function () {
             window.alert($scope.project);
             window.alert($stateParams.projectId);
