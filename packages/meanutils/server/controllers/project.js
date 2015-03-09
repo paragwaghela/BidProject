@@ -25,14 +25,33 @@ exports.create=function(req,res){
     });
 };
 
+var count = 0;
+exports.count = function (req, res , next) {
+    Project.find().count().exec(function(err, projects) {
+        if(err) {
+            return res.status(400).send({
+
+            });
+        } else {
+            count= projects;
+            console.log('Exact count', count);
+            next();
+        }
+    });
+};
+
 exports.all=function(req,res){
-  Project.find({},function(err,projects){
+    var i = req.param('begin');
+
+  Project.find().skip(i).limit(5).exec(function(err,projects){
       if(err){
           return res.status(500).json({
               error: 'Cannot list the articles'
           });
       }else
-        res.json(projects);
+      var arr = [{projects: projects, count: count}];
+
+        res.json(arr);
   });
 
 

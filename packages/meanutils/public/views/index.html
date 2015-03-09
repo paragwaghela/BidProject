@@ -1,5 +1,7 @@
 <div data-ng-controller="MeanutilsController">
     <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
-
 	<h2>Package: {{package.name}}</h2>
+    <div data-ng-repeat="sub in menuUtil " role="menu">
+       {{sub}}
+    </div>
 </div>
