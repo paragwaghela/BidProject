@@ -13,11 +13,8 @@
                     {{item.title}} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" data-ng-repeat="sub in item.subMenu " role="menu">
-                    <li><a href="#!/meanutils/example/project">{{sub}}</a></li>
+                    <li><a href="#!/meanutils/example/projects">{{sub}}</a></li>
                 </ul>
-            </li>
-            <li data-ng-repeat="item in menuUtil" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-                <a ng-href="{{item.link}}">{{item.title}}</a>
             </li>
         </ul>
     </div>
