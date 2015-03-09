@@ -7,18 +7,18 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.package = {
             name: 'meanutils'
         };
-        /*$scope.tinyoptions = {
+        $scope.tinyoptions = {
             resize: false,
             width: 400,  // I *think* its a number and not '400' string
             height: 300,
             plugins: 'print textcolor',
             toolbar: "undo redo styleselect bold italic print forecolor backcolor"
-        };*/
-        $scope.menuUtil = [ {title: 'Project', link:'#!/meanutils/example/projects'},
+        };
+        /*$scope.menuUtil = [ {title: 'Project', link:'#!/meanutils/example/projects'},
                             {title:'User', link: ''},
                             {title: 'Add project',link: '#!/meanutils/example/project/add' }
                           ];
-
+*/
 
         MenuService.query(function (menu) {
             console.log('Inside----');
