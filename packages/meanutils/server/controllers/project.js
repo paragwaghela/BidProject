@@ -10,6 +10,17 @@ var mongoose = require('mongoose'),
     Project = mongoose.model('Projects'),
     _ = require('lodash');
 
+/**
+ * Find project by id
+ */
+exports.project = function(req, res, next, id) {
+    Project.load(id, function(err, project) {
+        if (err) return next(err);
+        if (!project) return next(new Error('Failed to load article ' + id));
+        req.project = project;
+        next();
+    });
+};
 exports.create=function(req,res){
     var project = new Project(req.body);
     project.createdBy = req.use;
@@ -53,6 +64,9 @@ exports.all=function(req,res){
 
         res.json(arr);
   });
+};
 
-
+exports.show = function(req, res) {
+    console.log("here",req.project);
+    res.json(req.project);
 };

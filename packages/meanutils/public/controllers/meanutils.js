@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'Global', 'MenuService','ProjectService','$location',
-    function($scope, Global, MenuService, projectService, $location) {
+angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','Global', 'MenuService','ProjectService','$stateParams',
+    function($scope, $location,Global, MenuService, ProjectService, $stateParams) {
+        $scope.project = {};
 
         $scope.global = Global;
 
@@ -12,7 +13,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'G
         $scope.filteredTodos = [];
         $scope.currentPage = 1;
         $scope.maxSize = 2;
-        $scope.itemsPerPage= 5;
+        $scope.itemsPerPage = 5;
 
         var pagCount,
             begin = 0;
@@ -32,7 +33,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'G
 
                 $scope.$watch('currentPage + numPerPage', function () {
                     $scope.filteredTodos = [];
-                    var begin = (($scope.currentPage -1) * $scope.itemsPerPage);
+                    var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
 
                     projectService.query({
                         begin: begin
@@ -48,9 +49,10 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'G
             $scope.menuUtil = [{title: menu[0].menuName, subMenu: menu[0].submenu}];
         });
 
-        $scope.addProject = function(isValid) {
+        $scope.addProject = function (isValid) {
             if (isValid) {
-                var project = new projectService({
+
+                var project = new ProjectService({
                     title: this.title,
                     deadline: this.deadline,
                     discription: this.discription,
@@ -58,14 +60,34 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', 'G
                 });
                 console.log(project);
                 project.$save(function (response) {
-                    $location.path('/meanutils/example/project');
-                });
 
+                    $scope.project = response;
+                    $location.path('/meanutils/example/project/' + response._id);
+
+                });
                 this.title = '';
                 this.discription = '';
+                this.deadline = '';
+                this.price = '';
             } else {
                 $scope.submitted = true;
             }
+        };
+
+        $scope.all = function () {
+            ProjectService.query(function (projects) {
+                $scope.projects = projects;
+                console.log("Projects", projects);
+            });
+        };
+        $scope.findOne = function () {
+            window.alert($scope.project);
+            window.alert($stateParams.projectId);
+            ProjectService.get({
+                projectId: $stateParams.projectId
+            }, function (project) {
+                $scope.project = project;
+            });
         };
 
     }
