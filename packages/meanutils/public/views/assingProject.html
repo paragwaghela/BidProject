@@ -1,0 +1,31 @@
+<div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
+<div data-ng-controller="MeanutilsController" data-ng-init="UsersOnProject()">
+<h1>Assign project</h1>
+<div class="col-md-3">
+    <div data-ng-if="users.$resolved && !users.length">
+        <input type="text" placeholder="Search" ng-model="selected" typeahead="pro.title + '---Rs.' + pro.price for pro in filteredTodos | filter:$viewValue | limitTo:8" class="form-control">
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>User Name</th>
+        <th>Bid</th>
+        <th>Number of days of deliver </th>
+        <th>Initial milestone</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="user in users | filter: selected" >
+        <td>{{user.userName}}</td>
+        <td>{{user.bid}}</td>
+        <td>{{user.day}}</td>
+        <td>{{user.initialmileston}}</td>
+        <td><a data-ng-href="">Hire</a></td>
+    </tr>
+    </tbody>
+</table>
+<div data-ng-if="project.$resolved && !project.length">
+<pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" num-pages="numofPages" max-size="maxSize" items-per-page ="itemsPerPage"></pagination>
+    </div>
+</div>

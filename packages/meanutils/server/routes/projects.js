@@ -15,13 +15,14 @@ var hasAuthorization = function(req, res, next) {
 
 module.exports = function(Meanutils, app, auth) {
 
-    app.route('/projects')
+    app.route('/meanutils/example/projects')
         .get(projects.count, projects.all)
+        .put(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.update)
         .post(auth.requiresLogin, projects.create);
 
-    app.route('/projects/:projectId')
-        .get(auth.isMongoId, projects.show);
-        //.put(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.update)
+    app.route('/meanutils/example/projects/:projectId')
+        .get(auth.isMongoId, projects.show)
+        //.put(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.update);
         //.delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.destroy);
     // Finish with setting up the articleId param
     app.param('projectId', projects.project);

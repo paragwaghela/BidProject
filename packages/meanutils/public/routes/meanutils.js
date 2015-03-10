@@ -17,6 +17,14 @@ angular.module('mean.meanutils').config(['$stateProvider',
         .state('project by id', {
             url: '/meanutils/example/project/:projectId',
             templateUrl: 'meanutils/views/view.html'
-         });
+         })
+        .state('project for bid', {
+            url: '/meanutils/example/project/bid/:projectId',
+            templateUrl: 'meanutils/views/biding.html'
+        })
+        .state('project Assing', {
+            url: '/meanutils/example/project/assing/:projectId',
+            templateUrl: 'meanutils/views/assingProject.html'
+        });
     }
 ]);

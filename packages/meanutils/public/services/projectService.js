@@ -3,10 +3,10 @@
  */
 'use strict';
 
-//Articles service used for articles REST endpoint
+//Project service used for articles REST endpoint
 angular.module('mean.meanutils').factory('ProjectService', ['$resource',
     function($resource) {
-        return $resource('projects/:projectId', {
+        return $resource('meanutils/example/projects/:projectId', {
             projectId: '@_id'
         }, {
             update: {

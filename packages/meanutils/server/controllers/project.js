@@ -52,7 +52,7 @@ exports.count = function (req, res , next) {
 };
 
 exports.all=function(req,res){
-    var i = req.param('begin');
+    var i = req.body('begin');
 
   Project.find().skip(i).limit(5).exec(function(err,projects){
       if(err){
@@ -71,4 +71,19 @@ exports.all=function(req,res){
 exports.show = function(req, res) {
     console.log("here",req.project);
     res.json(req.project);
+};
+
+/**
+ * Update an article
+ */
+exports.update = function(req, res) {
+    Project.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.projectId)},{$push:{ bid : req.body.bid}}).exec(function(err,data) {
+        if (err) {
+            return res.status(500).json({
+                error: 'Cannot update the article'
+            });
+        } else {
+            res.json(data);
+        }
+    });
 };

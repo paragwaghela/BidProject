@@ -40,30 +40,15 @@ var ProjectSchema = new Schema({
     },
     price:{
         type: Number
-    }
+    },
+    bid :[{
+        userId : {type :String},
+        userName : {type:String},
+        bid : {type : Number},
+        day : {type : Number},
+        initialmileston : {type : Number}
+        }]
 });
-/*
-var ProjectSchema = new Schema({
-    created: {
-        type: Date,
-        default: Date.now
-    },
-    title: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    content: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    user: {
-        type: Schema.ObjectId,
-        ref: 'User'
-    }
-});
-*/
 
 /**
  * Validations

@@ -59,8 +59,9 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         });
 
         $scope.addProject = function (isValid) {
-            if (isValid) {
 
+            if (isValid) {
+                window.alert("Add project");
                 var project = new ProjectService({
                     title: this.title,
                     deadline: this.deadline,
@@ -78,18 +79,9 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 this.deadline = '';
                 this.price = '';
             } else {
+                window.alert("else Add project");
                 $scope.submitted = true;
             }
-        };
-
-        $scope.findOne = function () {
-            window.alert($scope.project);
-            window.alert($stateParams.projectId);
-            ProjectService.get({
-                projectId: $stateParams.projectId
-            }, function (project) {
-                $scope.project = project;
-            });
         };
 
         $scope.findOne = function() {
@@ -99,6 +91,37 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 $scope.project = project;
             });
         };
+        $scope.addBinding = function(isValid){
+            if (isValid) {
+                var project = new ProjectService({
+                    bid: {
+                        userId: $scope.global.user._id,
+                        userName: $scope.global.user.username,
+                        bid: this.bid,
+                        day: this.day,
+                        initialmileston : this.milestone
+                    },
+                    projectId : $stateParams.projectId
+                });
 
+                project.$update(function () {
+                    console.log(project);
+                    $location.path('//meanutils/example/projects');
+                });
+            }else {
+                 $scope.submitted = true;
+             }
+        };
+        $scope.findBidUsers = function(){
+
+        };
+        $scope.UsersOnProject = function(){
+            ProjectService.get({
+                projectId: $stateParams.projectId
+            }, function (project) {
+                $scope.project = project;
+                $scope.users = project.bid;
+            });
+        };
     }
 ]);
