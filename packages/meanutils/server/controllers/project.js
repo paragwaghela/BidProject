@@ -8,7 +8,8 @@
  */
 var mongoose = require('mongoose'),
     Project = mongoose.model('Projects'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    User = mongoose.model('User');
 
 /**
  * Find project by id
@@ -23,8 +24,6 @@ exports.project = function(req, res, next, id) {
 };
 exports.create=function(req,res){
     var project = new Project(req.body);
-    project.createdBy = req.use;
-    console.log(req.body);
     project.save(function(err,data){
        if(err)
           return res.status(500).json({
@@ -52,7 +51,7 @@ exports.count = function (req, res , next) {
 };
 
 exports.all=function(req,res){
-    var i = req.body('begin');
+    var i = req.param('begin');
 
   Project.find().skip(i).limit(5).exec(function(err,projects){
       if(err){
@@ -69,21 +68,22 @@ exports.all=function(req,res){
 };
 
 exports.show = function(req, res) {
-    console.log("here",req.project);
+    console.log("Project",req.project)
     res.json(req.project);
 };
 
 /**
- * Update an article
+ * Update an Project
  */
 exports.update = function(req, res) {
     Project.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.projectId)},{$push:{ bid : req.body.bid}}).exec(function(err,data) {
         if (err) {
             return res.status(500).json({
-                error: 'Cannot update the article'
+                error: 'Cannot add the bid'
             });
         } else {
             res.json(data);
         }
     });
 };
+

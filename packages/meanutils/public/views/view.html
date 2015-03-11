@@ -3,7 +3,7 @@
     <h1>view project</h1>
 
     Project Posted By
-    <div>{{global.user.username}}</div>
+    <div>{{project.createdUserName}}</div>
 
     <h3>{{project.title}}</h3>
     <span><b>Project Discription:</b></span>
@@ -16,6 +16,40 @@
     <h3>Bid</h3>
     <div>8</div>
 
-    <a data-ng-href="#!/meanutils/example/project/bid/{{project._id}}">Bid</a>
-    <a data-ng-href="#!/meanutils/example/project/assing/{{project._id}}">Assing Project</a>
+    <div class="form-group" ng-if="allow">
+    <div ng-if="allow">
+            <a data-ng-href="#!/meanutils/example/project/bid/{{project._id}}">
+                <button mean-token="'create-submit'" class="btn btn-info">Bid</button>
+            </a>
+        </div>
+    </div>
+    <div data-ng-if="bidUsers.length != 0">
+     <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Bid</th>
+            <th>Number of days of deliver </th>
+            <th>Initial milestone</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in bidUsers | filter: selected" >
+            <td>{{user.userName}}</td>
+            <td>{{user.bid}}</td>
+            <td>{{user.day}}</td>
+            <td>{{user.initialmileston}}</td>
+            <td>
+                <div class="form-group" ng-if="project.createdBy === global.user._id">
+                <div class="col-md-offset-3 col-md-9">
+                    <button class="btn btn-info" ng-Click="assingProject()">Hire</button>
+                </div>
+            </div></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    <div data-ng-if="bidUsers.length === 0">
+        <h3>No one can bid for this project </h3>
+    </div>
 </div>

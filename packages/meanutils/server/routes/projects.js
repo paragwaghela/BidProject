@@ -24,7 +24,9 @@ module.exports = function(Meanutils, app, auth) {
         .get(auth.isMongoId, projects.show)
         //.put(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.update);
         //.delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.destroy);
-    // Finish with setting up the articleId param
+    // Finish with setting up the Id param
+
     app.param('projectId', projects.project);
+
 
 };

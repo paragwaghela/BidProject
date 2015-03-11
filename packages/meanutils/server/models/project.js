@@ -22,6 +22,10 @@ var ProjectSchema = new Schema({
         type: String,
         trim: true
     },
+    createdUserName :{
+        type: String,
+        trim: true
+    },
     status: {
         type : String,
         default : 'New'

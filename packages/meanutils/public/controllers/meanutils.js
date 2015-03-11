@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','Global', 'MenuService','ProjectService','$stateParams',
-    function($scope, $location,Global, MenuService, ProjectService, $stateParams) {
+angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','$http','Global', 'MenuService','ProjectService','$stateParams',
+    function($scope, $location,$http,Global, MenuService, ProjectService, $stateParams) {
         $scope.project = {};
 
 
@@ -61,18 +61,17 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.addProject = function (isValid) {
 
             if (isValid) {
-                window.alert("Add project");
                 var project = new ProjectService({
                     title: this.title,
                     deadline: this.deadline,
                     discription: this.discription,
-                    price: this.price
+                    price: this.price,
+                    createdBy : $scope.global.user._id,
+                    createdUserName : $scope.global.user.username
                 });
                 console.log(project);
                 project.$save(function (response) {
-
                     $location.path('/meanutils/example/project/' + response._id);
-
                 });
                 this.title = '';
                 this.discription = '';
@@ -83,12 +82,22 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 $scope.submitted = true;
             }
         };
+        $scope.assingProject = function(){
+          window.alert("Currently not implemented");
+        };
 
         $scope.findOne = function() {
+            $scope.allow = true;
             ProjectService.get({
                 projectId: $stateParams.projectId
             }, function (project) {
                 $scope.project = project;
+                $scope.bidUsers = project.bid;
+                for(var i=0; i < $scope.bidUsers.length;i++ ) {
+                   if($scope.bidUsers[i].userId === $scope.global.user._id) {
+                             $scope.allow = false;
+                    }
+                }
             });
         };
         $scope.addBinding = function(isValid){
