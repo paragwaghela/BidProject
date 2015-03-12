@@ -9,20 +9,32 @@ var mongoose = require('mongoose'),
 
 
 exports.read = function(req, res) {
+    console.log("REad",req.state);
     res.json(req.state);
 };
 
 
 exports.list = function(req, res) {
-    Menu.find().exec(function(err, menus) {
-        if (err) {
-            return res.status(400).send(err);
-        } else {
-            console.log(menus);
 
-            res.send(menus);
-        }
-    });
+    var role = req.param('role');
+    if(role === 'admin'){
+        Menu.find().exec(function(err, menus) {
+            if (err) {
+                return res.status(400).send(err);
+            } else {
+               res.send(menus);
+            }
+        });
+    } else {
+        Menu.find({roles: { $in: ['user']}}).exec(function(err, menus) {
+            if (err) {
+                return res.status(400).send(err);
+            } else {
+                res.send(menus);
+            }
+        });
+    }
+
 };
 
 exports.hasAuthorization = function(req, res, next) {

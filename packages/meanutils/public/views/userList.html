@@ -1,0 +1,35 @@
+<div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
+<div data-ng-controller="usersController" data-ng-init="all()">
+
+    <div class="col-md-3">
+        <input type="search" ng-model="selected" placeholder="search" />
+        <!--<input type="text" placeholder="Search" ng-model="selected" typeahead="pro.name for pro in filteredTodos | filter:$viewValue | limitTo:8" typeahead-on-select='onSelect($item)'class="form-control">-->
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name of User</th>
+            <th>Email Id</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in filteredTodos | filter: selected">
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.roles[0]}}</td>
+            <td>
+                <a class="btn btn-primary" href="#!/meanutils/users/{{user._id}}">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-primary" data-ng-click="remove($index,user._id);">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" num-pages="numofPages" max-size="maxSize" items-per-page ="itemsPerPage"></pagination>
+</div>

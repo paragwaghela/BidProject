@@ -1,0 +1,43 @@
+<div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
+<h1 align="left">Update User</h1>
+<br>
+
+<div align="left" ng-controller="usersController" data-ng-init="findOne()">
+    <form name="userForm" class="form-horizontal col-md-6" role="form" data-ng-submit="createUser(userForm.$valid)" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : submitted && userForm.name.$invalid }">
+            <label mean-token="'create-name'" class="col-md-3 control-label">Name of User</label>
+            <div class="col-md-9">
+                <input name="name" type="text" class="form-control" data-ng-model="user.name" id="name" placeholder="Name of user" required>
+                <div ng-show="submitted && userForm.name.$invalid" class="help-block">
+                    <p ng-show="userForm.name.$error.required">Name is required</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : submitted && userForm.email.$invalid }">
+            <label mean-token="'create-email'" class="col-md-3 control-label">Email Id</label>
+            <div class="col-md-9">
+                <input name="email" type="email" class="form-control" data-ng-model="user.email" id="email" placeholder="Email Id" required>
+                <div ng-show="submitted && userForm.email.$invalid" class="help-block">
+                    <p ng-show="userForm.email.$error.required">Invalid Email address</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : submitted && userForm.username.$invalid }">
+            <label mean-token="'create-username'" class="col-md-3 control-label">Username</label>
+            <div class="col-md-9">
+                <input name="username" type="text" class="form-control" data-ng-model="user.username" id="username" placeholder="username" required>
+                <div ng-show="submitted && userForm.username.$invalid" class="help-block">
+                    <p ng-show="userForm.username.$error.required">Username is required</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <button mean-token="'create-submit'" type="submit" class="btn btn-info">
+                    <span ng-show="id">Update User</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

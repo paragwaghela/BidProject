@@ -1,17 +1,25 @@
 'use strict';
 
+
 angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','$http','Global', 'MenuService','ProjectService','$stateParams',
     function($scope, $location,$http,Global, MenuService, ProjectService, $stateParams) {
+
         $scope.project = {};
+        $scope.menuUtil = [];
+        $scope.filteredTodos = [];
 
 
-        $scope.global = Global;
+        MenuService.query({role: Global.user.roles[0]}, function (menu) {
+            console.log('menu data', menu);
+            $scope.menuUtil = menu;
+        });
+
+
 
         $scope.package = {
             name: 'meanutils'
         };
 
-        $scope.filteredTodos = [];
         $scope.currentPage = 1;
         $scope.maxSize = 2;
 
@@ -20,6 +28,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
         var pagCount,
             begin = 0;
+
 
         $scope.all = function () {
             ProjectService.query({
@@ -51,12 +60,8 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             });
         };
 
-        MenuService.query(function (menu) {
-            console.log('Inside----');
-            console.log(menu[0].menuName);
-            console.log(menu[0].submenu);
-            $scope.menuUtil = [{title: menu[0].menuName, subMenu: menu[0].submenu}];
-        });
+
+
 
         $scope.addProject = function (isValid) {
 
@@ -87,6 +92,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         };
 
         $scope.findOne = function() {
+
             $scope.allow = true;
             ProjectService.get({
                 projectId: $stateParams.projectId
@@ -125,6 +131,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
         };
         $scope.UsersOnProject = function(){
+
             ProjectService.get({
                 projectId: $stateParams.projectId
             }, function (project) {

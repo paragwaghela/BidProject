@@ -1,0 +1,61 @@
+<div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
+<h1 align="left">Create User</h1>
+<br>
+
+<div align="left" ng-controller="usersController">
+    <form name="userForm" class="form-horizontal col-md-6" role="form" data-ng-submit="createUser(userForm.$valid)" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : submitted && userForm.name.$invalid }">
+            <label mean-token="'create-name'" class="col-md-3 control-label">Name of User</label>
+            <div class="col-md-9">
+                <input name="name" type="text" class="form-control" data-ng-model="user.name" id="name" placeholder="Name of user" required>
+                <div ng-show="submitted && userForm.name.$invalid" class="help-block">
+                    <p ng-show="userForm.name.$error.required">Name is required</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : submitted && userForm.email.$invalid }">
+            <label mean-token="'create-email'" class="col-md-3 control-label">Email Id</label>
+            <div class="col-md-9">
+                <input name="email" type="email" class="form-control" data-ng-model="user.email" id="email" placeholder="Email Id" required>
+                <div ng-show="submitted && userForm.email.$invalid" class="help-block">
+                    <p ng-show="userForm.email.$error.required">Invalid Email address</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : submitted && userForm.username.$invalid }">
+            <label mean-token="'create-username'" class="col-md-3 control-label">Username</label>
+            <div class="col-md-9">
+                <input name="username" type="text" class="form-control" data-ng-model="user.username" id="username" placeholder="username" required>
+                <div ng-show="submitted && userForm.username.$invalid" class="help-block">
+                    <p ng-show="userForm.username.$error.required">Username is required</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : submitted && userForm.password.$invalid }">
+            <label mean-token="'create-password'" class="col-md-3 control-label">Password</label>
+            <div class="col-md-9">
+                <input name="password" type="password" data-ng-model="user.password" id="password" placeholder="Password" class="form-control" required>
+                <div ng-show="submitted && userForm.password.$invalid" class="help-block">
+                    <p ng-show="userForm.password.$error.required">Password is required</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : submitted && userForm.confirm.$invalid }">
+            <label mean-token="'create-confirm'" class="col-md-3 control-label">Confirm Password</label>
+            <div class="col-md-9">
+                <input name="confirm" type="password" class="form-control" data-ng-model="user.confirmPassword" id="confirm" placeholder="Confirm password" required>
+                <div ng-show="submitted && userForm.confirm.$invalid" class="help-block">
+                    <p ng-show="userForm.confirm.$error.required">Password must be same</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <button mean-token="'create-submit'" type="submit" class="btn btn-info">
+                    <span ng-show="!id">Create User</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

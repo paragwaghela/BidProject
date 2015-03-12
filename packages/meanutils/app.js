@@ -18,9 +18,9 @@ Meanutils.register(function(app, auth, database) {
 
     //We are adding a link to the main menu for all authenticated users
     Meanutils.menus.add({
-        title: 'meanutils',
+        title: 'MeanUtilities',
         link: 'meanutils',
-        roles: ['authenticated'],
+        roles: ['user','admin'],
         menu: 'main'
     });
 

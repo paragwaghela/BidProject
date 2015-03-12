@@ -7,11 +7,11 @@
 var menu = require('../controllers/menus');
 
 
-module.exports = function (Meanutils, app) {
+module.exports = function (Meanutils, app, auth) {
 
     app.route('/meanutils')
         .get(menu.list);
     app.route('menus/:menuId').get(menu.read);
 
-   // app.param('menuId', menu);
+    // app.param('menuId', menu);
 };

@@ -14,7 +14,7 @@ var menuSchema = new Schema({
         trim: true,
         required: 'Name cannot be blank'
     },
-    subMenu: {
+    submenu: {
         type: Array,
         default: '',
         trim: true

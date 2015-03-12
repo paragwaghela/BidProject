@@ -53,6 +53,20 @@
               </div>
         </span>
         </div>
+        <div class="control-group btn-group" data-toggle="buttons-radio">
+            <strong>I am looking to</strong>
+            <br>
+            <label class="btn btn-plain">
+                <span class="radio">
+                    <input type="radio" name="looking_for" id="looking_to_hire" value="admin" ng-model="user.roles" data-role="none" class="required">Hire</span>
+            </label>
+
+            <label class="btn btn-plain">
+                <span class="radio">
+                    <input type="radio" name="looking_for" id="looking_for_work" value="user" ng-model="user.roles" data-role="none">Work</span>
+            </label>
+
+        </div>
 
         <div class="button_register">
             <button type="submit" class="submit_button">Sign up</button>
