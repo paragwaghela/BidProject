@@ -1,0 +1,50 @@
+<div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
+<h1>Account</h1>
+<div ng-controller="MeanutilsController" ng-init="account()">
+    <div ng-repeat="error in registerError">
+            <div class="alert alert-danger animated fadeIn">{{error.msg}}</div>
+        </div>
+        <div class="alert alert-danger animated fadeIn" ng-show="usernameError">{{usernameError}}</div>
+        <div class="alert alert-danger animated fadeIn" ng-show="emailError">{{emailError}}</div>
+        <form id="account_form" ng-submit="accountUpdate()">
+            <div class="input-wrapper">
+                <label>Name</label>
+                <input required id="name" type="text" name="name" placeholder="Full Name"
+                       ng-model="userdata.name">
+
+                <div class="error_message">Please enter a correct info #</div>
+                <span class="pic user"></span>
+            </div>
+
+            <div class="input-wrapper">
+                <label>Email</label>
+                <input required id="email_block" type="email" name="email" placeholder="Email Address"
+                       ng-model="userdata.email">
+
+                <div class="error_message">Please enter a correct info #</div>
+                <span class="pic email"></span>
+            </div>
+
+            <div class="input-wrapper">
+                <label>User Name</label>
+                <input required id="username" type="text" name="username" placeholder="Username"
+                       ng-model="userdata.username">
+
+                <div class="error_message">Please enter a correct info #</div>
+                <span class="pic username"></span>
+            </div>
+            <div class="input-wrapper">
+                <lable>Upload pic</lable>
+                <input type="file" ng-file-select="onFileSelect($files)" >
+            </div>
+            <i ng-hide="imageSrc">No image choosed</i>
+            <img ng-src="{{imageSrc}}" height="100" width="200" /><br/>
+            <div class="button_register">
+                <button type="submit" class="submit_button">Update</button>
+            </div>
+            <div class="woman_ninja_bottom">
+                <img src="/theme/assets/img/woman_ninja.png" alt="#">
+            </div>
+        </form>
+    </div>
+</div>

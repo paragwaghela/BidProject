@@ -25,6 +25,10 @@ angular.module('mean.meanutils').config(['$stateProvider',
         .state('project Assing', {
             url: '/meanutils/example/project/assing/:projectId',
             templateUrl: 'meanutils/views/assingProject.html'
+        })
+        .state('Account ', {
+             url: '/meanutils/example/user/account',
+             templateUrl: 'meanutils/views/account.html'
         });
     }
 ]);

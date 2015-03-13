@@ -1,22 +1,30 @@
 'use strict';
 
-angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','$http','Global', 'MenuService','ProjectService','$stateParams',
-    function($scope, $location,$http,Global, MenuService, ProjectService, $stateParams) {
+angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','$http','Global', 'MenuService','ProjectService','$stateParams','MeanUser','fileReader',
+    function($scope, $location,$http,Global, MenuService, ProjectService, $stateParams,MeanUser,fileReader) {
         $scope.project = {};
 
 
         $scope.global = Global;
-
+        $scope.currentDate = new Date();
         $scope.package = {
             name: 'meanutils'
         };
-
+        $scope.assingUser ={};
         $scope.filteredTodos = [];
         $scope.currentPage = 1;
         $scope.maxSize = 2;
 
         $scope.itemsPerPage= 5;
+        $scope.files = [];
 
+        $scope.getFile = function () {
+            $scope.progress = 0;
+            fileReader.readAsDataUrl($scope.file, $scope)
+                .then(function(result) {
+                    $scope.imageSrc = result;
+                });
+        };
 
         var pagCount,
             begin = 0;
@@ -82,10 +90,12 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 $scope.submitted = true;
             }
         };
-        $scope.assingProject = function(){
-          window.alert("Currently not implemented");
-        };
-
+        function findUserfromId(UserId){
+            $http.get('/users/:' + UserId).success(function(data){
+                $scope.userdata=data;
+                console.log(data);
+            });
+        }
         $scope.findOne = function() {
             $scope.allow = true;
             ProjectService.get({
@@ -93,11 +103,16 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             }, function (project) {
                 $scope.project = project;
                 $scope.bidUsers = project.bid;
-                for(var i=0; i < $scope.bidUsers.length;i++ ) {
-                   if($scope.bidUsers[i].userId === $scope.global.user._id) {
-                             $scope.allow = false;
+                var diff = Math.floor((new Date(project.deadline).getTime() / 86400000) - (new Date().getTime() / 86400000) + 1);
+                if(diff < 0 )
+                  $scope.allow = false;
+                    for(var i=0; i < $scope.bidUsers.length;i++) {
+                        if (($scope.bidUsers[i].userId === $scope.global.user._id)){
+                            $scope.allow = false;
+                        }
+
                     }
-                }
+
             });
         };
         $scope.addBinding = function(isValid){
@@ -132,5 +147,11 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 $scope.users = project.bid;
             });
         };
+        $scope.account = function(){
+           $http.get('/users/me').success(function(data){
+               $scope.userdata=data;
+               console.log(data);
+            });
+        }
     }
 ]);
