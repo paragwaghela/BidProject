@@ -15,8 +15,17 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         });
 
 
+
         $scope.global = Global;
         $scope.currentDate = new Date();
+
+        $scope.myInterval = 2000;
+        $scope.slides = [{image: '/images/aa.jpeg',text: "Hey This is carsoul"},
+                 {image: '/images/av.jpeg', text: "Hey This is carsoul"},
+                 {image: '/images/gt.jpeg', text: "Hey This is carsoul"},
+                 {image: '/images/pf1.jpeg', text: "Hey This is carsoul"},
+                 {image: '/images/pf2.jpeg', text: "Hey This is carsoul"}];
+
         $scope.package = {
             name: 'meanutils'
         };

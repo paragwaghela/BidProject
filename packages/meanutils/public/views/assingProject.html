@@ -1,6 +1,7 @@
-<div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
-{{assingUser}}
-<div data-ng-controller="MeanutilsController" data-ng-init="findOne()">
+
+<div class="navbar navbar-inverse navbar-fixed-top"  style="background-color: white" data-ng-include="'/meanutils/views/header.html'"></div>
+<div data-ng-controller="MeanutilsController" data-ng-init="UsersOnProject()">
+
 <h1>Assign project</h1>
 <div>Project Title
     <span>{{project.title}}</span>

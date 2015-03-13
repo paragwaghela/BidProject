@@ -1,4 +1,38 @@
 <div data-ng-controller="MeanutilsController">
-    <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: white" data-ng-include="'/meanutils/views/header.html'"></div>
+    <br>
+
+    <div style="height: 325px; border: solid 1px #a94442">
+        <carousel interval="myInterval">
+            <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto;width: 100%;height: 325px">
+                <div class="carousel-caption">
+                    <p>{{slide.text}}</p>
+                </div>
+            </slide>
+        </carousel>
+    </div>
+    <br>
+    <div class="col-md-6">
+        <h1>
+        How Freelancer Works
+        </h1>
+        <h4>
+        Post any project you need done and receive bids from our talented freelancers within minutes. Compare their proposals and price, then select the best freelancer to complete your project. Easy!
+        </h4>
+        <h4>
+        What are your benefits?
+        </h4>
+        <ul>
+            <li> Receive hundreds of proposals to compare within minutes</li>
+            <li>Realtime chat, project collaboration and tracking of tasks</li>
+            <li> Pay for work safely and securely. Only release payment when 100% satisfied with the work provided!</li>
+        </ul>
+    </div>
+    <div class="col-md-6" style="background-color: #999999">
+        <img src="https://cdn5.f-cdn.com/static/css/images/homepage/interactive-step.gif?v=260adfd0fcf91c8ee92a6a5b7df80997&amp;m=2" alt="how to get work done on freelancer!" class="interactive-step-img">
+
+    </div>
+    <hr>
 
 </div>

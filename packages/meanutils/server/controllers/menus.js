@@ -18,7 +18,7 @@ exports.list = function(req, res) {
 
     var role = req.param('role');
     if(role === 'admin'){
-        Menu.find().exec(function(err, menus) {
+        Menu.find({roles: { $in: ['admin']}}).exec(function(err, menus) {
             if (err) {
                 return res.status(400).send(err);
             } else {
@@ -30,6 +30,7 @@ exports.list = function(req, res) {
             if (err) {
                 return res.status(400).send(err);
             } else {
+                console.log("Works", menus)
                 res.send(menus);
             }
         });

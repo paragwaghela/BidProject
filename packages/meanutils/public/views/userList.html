@@ -1,8 +1,8 @@
-<div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color: white" data-ng-include="'/meanutils/views/header.html'"></div>
 <div data-ng-controller="usersController" data-ng-init="all()">
 
     <div class="col-md-3">
-        <input type="search" ng-model="selected" placeholder="search" />
+        <input class="form-control" type="search" ng-model="selected" placeholder="search" />
         <!--<input type="text" placeholder="Search" ng-model="selected" typeahead="pro.name for pro in filteredTodos | filter:$viewValue | limitTo:8" typeahead-on-select='onSelect($item)'class="form-control">-->
     </div>
     <table class="table table-striped">

@@ -1,48 +1,49 @@
 <div class="page-header" data-ng-controller="MeanutilsController">
-
+<!---->
     <div class="logo pull-left col-md-1">
-        <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">Freelancer</a>
+        <a class="navbar-brand" ui-sref="home" mean-token="'site-title'" style="color: #a94442"><b>Freelancer</b></a>
     </div>
     <div class="col-md-1"></div>
     <div class="left pull-left">
-
+<!---->
         <ul class="navbar-nav nav">
             <li data-ng-repeat="item in menuUtil" role="presentation" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: #a94442">
                     {{item.menuName}} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu"  role="menu">
-                    <li data-ng-repeat="sub in item.submenu "><a ng-href="{{sub.reference}}">{{sub.title}}</a></li>
+                    <li data-ng-repeat="sub in item.submenu "><a ng-href="{{sub.reference}}" style="color: #a94442">{{sub.title}}</a></li>
                 </ul>
             </li>
         </ul>
     </div>
-
+<!---->
     <div class="account">
         <div class="text-edit">
             <div class="pull-right" data-ng-show="global.authenticated" mean-token-editable></div>
             <div class="pull-right" data-ng-show="global.authenticated" mean-translate></div>
         </div>
         <ul class="navbar-nav nav" data-ng-hide="global.authenticated">
-            <li><a ui-sref='auth.register'>Join</a>
+            <li><a ui-sref='auth.register' style="color: #a94442">Join</a>
             </li>
             <li class="divider-vertical"></li>
-            <li><a ui-sref='auth.login'>Log In</a>
+            <li><a ui-sref='auth.login' style="color: #a94442">Log In</a>
             </li>
         </ul>
-
-        <ul class="navbar-nav nav"  data-ng-show="global.authenticated">
+<!---->
+        <ul class="navbar-nav nav"  data-ng-show="global.authenticated" >
             <li ng-if="global.user.profile" class="dropdown" mean-profile-menu>x</li>
             <li ng-if="!global.user.profile" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"style="color: #a94442">
                     {{global.user.username}} <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="#!/meanutils/example/user/account">Account</a>
-                        <a href="/logout">Log Out</a>
-                    </li>
-                </ul>
-            </li>
+                    <a href="/logout" style="color: #a94442">Log Out</a></li>
+
         </ul>
-    </div>
+  </li>
+            </ul>
+        </div>
 </div>

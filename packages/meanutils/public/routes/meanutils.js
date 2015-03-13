@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.meanutils').config(['$stateProvider',
-    function($stateProvider) {
+angular.module('mean.meanutils').config(['$stateProvider', '$locationProvider',
+    function($stateProvider, $locationProvider) {
 
         $stateProvider.state('meanutils', {
             url: '/meanutils',

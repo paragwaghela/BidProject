@@ -32,6 +32,7 @@ module.exports = function(app, db) {
 
   // Enable compression on bower_components
   app.use('/bower_components', express.static(config.root + '/bower_components'));
+  app.use('/images', express.static(config.root + '/images'));
 
   // Only use logger for development environment
   if (process.env.NODE_ENV === 'development') {

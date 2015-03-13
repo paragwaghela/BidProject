@@ -3,7 +3,14 @@
 angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
   function($scope, Global) {
     $scope.global = Global;
-    $scope.sites = {
+      $scope.myInterval = 2000;
+      $scope.slides = [{image: '/images/aa.jpeg',text: "Hey This is carsoul"},
+          {image: '/images/av.jpeg', text: "Hey This is carsoul"},
+          {image: '/images/gt.jpeg', text: "Hey This is carsoul"},
+          {image: '/images/pf1.jpeg', text: "Hey This is carsoul"},
+          {image: '/images/pf2.jpeg', text: "Hey This is carsoul"}];
+
+      $scope.sites = {
       'makeapoint':{
         'name':'makeapoint',
         'text':'Makeapoint is a platform to craft and fine-tune ideas and messages providing a graphical experience which brough an offline methodlogy online',

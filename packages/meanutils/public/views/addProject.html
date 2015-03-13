@@ -1,6 +1,8 @@
-<div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
-<h1>Add Project</h1>
-<div ng-controller="MeanutilsController">
+
+<div class="navbar navbar-inverse navbar-fixed-top"  style="background-color: white" data-ng-include="'/meanutils/views/header.html'"></div>
+<h1 align="center">Add Project</h1>
+<div align="center" ng-controller="MeanutilsController">
+
 <form name="ProjectForm" class="form-horizontal col-md-6" role="form" data-ng-submit="addProject(ProjectForm.$valid)" novalidate>
     <div class="form-group" ng-class="{ 'has-error' : submitted && ProjectForm.title.$invalid }">
         <label mean-token="'create-title'" class="col-md-3 control-label">Title</label>
