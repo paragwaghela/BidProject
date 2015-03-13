@@ -1,31 +1,41 @@
 <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/meanutils/views/header.html'"></div>
-<div data-ng-controller="MeanutilsController" data-ng-init="UsersOnProject()">
+{{assingUser}}
+<div data-ng-controller="MeanutilsController" data-ng-init="findOne()">
 <h1>Assign project</h1>
-<div class="col-md-3">
-    <div data-ng-if="users.$resolved && !users.length">
-        <input type="text" placeholder="Search" ng-model="selected" typeahead="pro.title + '---Rs.' + pro.price for pro in filteredTodos | filter:$viewValue | limitTo:8" class="form-control">
-    </div>
+<div>Project Title
+    <span>{{project.title}}</span>
 </div>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>User Name</th>
-        <th>Bid</th>
-        <th>Number of days of deliver </th>
-        <th>Initial milestone</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="user in users | filter: selected" >
-        <td>{{user.userName}}</td>
-        <td>{{user.bid}}</td>
-        <td>{{user.day}}</td>
-        <td>{{user.initialmileston}}</td>
-        <td><a data-ng-href="">Hire</a></td>
-    </tr>
-    </tbody>
-</table>
-<div data-ng-if="project.$resolved && !project.length">
-<pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" num-pages="numofPages" max-size="maxSize" items-per-page ="itemsPerPage"></pagination>
-    </div>
+ <div>Project Discription:
+    <span>{{project.discription}}</span>
+ </div>
+<div><span>Project DeadLine</span>
+    <span>{{project.deadline| date:'mediumDate' }}</span>
+</div>
+<div><span>Project Budget</span>
+    <span>{{project.price}}</span>
+</div>
+
+<div>User Name
+    <span>{{assingUser.userName}}</span>
+</div>
+<div>Project Discription:
+    <span>{{assingUser.bid}}</span>
+</div>
+<div><span>Project DeadLine</span>
+    <span>{{assingUser.day}}</span>
+</div>
+<div><span>Project Budget</span>
+    <span>{{assingUser.initialmileston}}</span>
+</div>
+
+    <br>
+<div>
+    <a data-ng-href="#!/meanutils/example/user/detail">
+        <button mean-token="'create-submit'" class="btn btn-info">User Detail</button>
+    </a>
+    <a data-ng-href="#!/meanutils/example/project/bid/{{project.userId}}">
+        <button mean-token="'create-submit'" class="btn btn-info">Assing Project </button>
+    </a>
+</div>
+</div>
 </div>

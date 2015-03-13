@@ -7,7 +7,7 @@
                 <label>Your Bid for project Rs.</label>
             </div>
             <div>
-                <input name="bid" type="number" data-ng-model="bid" id="bid" required>
+                <input name="bid" type="number" data-ng-model="bid" id="bid" only-num required>
                 <div ng-show="submitted && BidingForm.bid.$invalid" class="help-block">
                     <p ng-show="BidingForm.bid.$error.required">Bid </p>
                 </div>
@@ -16,7 +16,7 @@
         <div class="form-group" ng-class="{ 'has-error' : submitted && BidingForm.deadline.$invalid }">
             <label mean-token="'create-deadline'">In how many days You deliver a complete  project</label>
             <div>
-                <input name="day" type="number"  data-ng-model="day" id="day" required>
+                <input name="day" type="number"  data-ng-model="day" id="day" only-num required>
                 <div ng-show="submitted && BidingForm.day.$invalid" class="help-block">
                     <p ng-show="BidingForm.day.$error.required">DeadLine required</p>
                 </div>
@@ -25,7 +25,7 @@
         <div class="form-group" ng-class="{ 'has-error' : submitted && BidingForm.price.$invalid }">
             <label mean-token="'create-title'">Initial milestone required(20-100)%</label>
             <div >
-                <input name="milestone" type="number"  data-ng-model="milestone" id="milestone" required>
+                <input name="milestone" type="number"  data-ng-model="milestone" id="milestone" only-num required>
                 <div ng-show="submitted && BidingForm.milestone.$invalid" class="help-block">
                     <p ng-show="BidingForm.milestone.$error.required">Milestone is required</p>
                 </div>

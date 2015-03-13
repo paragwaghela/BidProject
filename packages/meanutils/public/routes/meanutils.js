@@ -39,7 +39,10 @@ angular.module('mean.meanutils').config(['$stateProvider',
         .state('user by id', {
             url: '/meanutils/users/:userId',
             templateUrl: 'meanutils/views/updateUser.html'
-
+       })
+        .state('Account ', {
+             url: '/meanutils/example/user/account',
+             templateUrl: 'meanutils/views/account.html'
         });
     }
 ]);
