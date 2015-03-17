@@ -1,14 +1,16 @@
 'use strict';
 
 
-angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','$http','Global', 'MenuService','ProjectService','$stateParams','MeanUser','fileReader',
-    function($scope, $location,$http,Global, MenuService, ProjectService, $stateParams,MeanUser,fileReader) {
+angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','$http','Global', 'MenuService','ProjectService','userAccountService','userService','$stateParams',
+    function($scope, $location,$http,Global, MenuService, ProjectService,userAccountService,userService, $stateParams) {
 
         $scope.project = {};
         $scope.menuUtil = [];
         $scope.filteredTodos = [];
-
-
+        $scope.imageStoreTemp = 'meanutils/assets/img';
+        $scope.imgHight =200;
+        $scope.imgWidth = 200;
+        $scope.id = $stateParams.userId;
         MenuService.query({role: Global.user.roles[0]}, function (menu) {
             console.log('menu data', menu);
             $scope.menuUtil = menu;
@@ -37,14 +39,6 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
         $scope.itemsPerPage= 5;
         $scope.files = [];
-
-        $scope.getFile = function () {
-            $scope.progress = 0;
-            fileReader.readAsDataUrl($scope.file, $scope)
-                .then(function(result) {
-                    $scope.imageSrc = result;
-                });
-        };
 
         var pagCount,
             begin = 0;
@@ -123,7 +117,9 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 $scope.bidUsers = project.bid;
                 var diff = Math.floor((new Date(project.deadline).getTime() / 86400000) - (new Date().getTime() / 86400000) + 1);
                 if(diff < 0 )
-                  $scope.allow = false;
+                    $scope.allow = false;
+                if($scope.global.user._id === project.createdBy)
+                    $scope.allow = false;
                     for(var i=0; i < $scope.bidUsers.length;i++) {
                         if (($scope.bidUsers[i].userId === $scope.global.user._id)){
                             $scope.allow = false;
@@ -148,7 +144,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
                 project.$update(function () {
                     console.log(project);
-                    $location.path('//meanutils/example/projects');
+                    $location.path('/meanutils/example/projects');
                 });
             }else {
                  $scope.submitted = true;
@@ -167,10 +163,21 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             });
         };
         $scope.account = function(){
-           $http.get('/users/me').success(function(data){
-               $scope.userdata=data;
-               console.log(data);
+        userService.get({
+                userId: $scope.global.user._id
+            }, function (user) {
+                $scope.userdata = user;
             });
         }
+        $scope.accountUpdate=function(isValid){
+                var userd = $scope.userdata;
+                userd.$update(function() {
+                    $location.path('/meanutils/example/projects');
+                }, function(errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+
+        }
+
     }
 ]);

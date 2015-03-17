@@ -43,6 +43,9 @@ angular.module('mean.meanutils').config(['$stateProvider', '$locationProvider',
         .state('Account ', {
              url: '/meanutils/example/user/account',
              templateUrl: 'meanutils/views/account.html'
+        }).state("UploadImage",{
+           url: '/meanutils/example/uploadImage',
+           templateUrl:'meanutils/views/account.html'
         });
     }
 ]);
