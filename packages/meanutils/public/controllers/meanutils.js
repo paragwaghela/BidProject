@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','$http','Global', 'MenuService','ProjectService','userAccountService','userService','$stateParams',
-    function($scope, $location,$http,Global, MenuService, ProjectService,userAccountService,userService, $stateParams) {
+angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','$http','Global', 'MenuService','ProjectService','userService','$stateParams',
+    function($scope, $location,$http,Global, MenuService, ProjectService,userService, $stateParams) {
 
         $scope.project = {};
         $scope.menuUtil = [];
