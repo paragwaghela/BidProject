@@ -72,6 +72,22 @@ exports.show = function(req, res) {
     res.json(req.project);
 };
 
+exports.updateProject = function(req, res){
+    console.log("Here",req.body);
+    var project = req.project;
+
+    project = _.extend(project, req.body);
+
+    project.save(function(err) {
+        if (err) {
+            return res.status(400).send({
+                error: 'Cannot save'
+            });
+        } else {
+            res.json(project);
+        }
+    });
+}
 /**
  * Update an Project
  */
@@ -83,6 +99,23 @@ exports.update = function(req, res) {
             });
         } else {
             res.json(data);
+        }
+    });
+};
+/*
+* Delete Project
+*
+* */
+exports.deleteProject = function(req, res) {
+    var project = req.project;
+
+    project.remove(function(err) {
+        if (err) {
+            return res.status(400).send({
+                error: 'Cannot delete the user'
+            });
+        } else {
+            res.json(project);
         }
     });
 };

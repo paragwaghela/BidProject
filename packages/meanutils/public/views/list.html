@@ -24,6 +24,19 @@
                 <td>{{project.deadline| date:'mediumDate'}}</td>
                 <td>{{project.status}}</td>
                 <td>Rs.{{project.price}}</td>
+                <td>
+                    <div class="form-group" ng-if="project.createdBy === global.user._id">
+                        <a class="btn btn-primary" data-ng-click="remove($index,project._id);">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </div>
+                </td>
+                <td ng-if="project.assingProject">
+                    <a data-ng-href="#!/meanutils/example/project/assing/{{project._id}}/{{project.assingProjectTo}}">
+                        <button mean-token="'create-submit'" class="btn btn-info">View User Detail </button>
+                    </a>
+                </td>
+
             </tr>
         </tbody>
     </table>

@@ -5,37 +5,25 @@
             <div class="alert alert-danger animated fadeIn">{{error.msg}}</div>
         </div>
         <div class="alert alert-danger animated fadeIn" ng-show="usernameError">{{usernameError}}</div>
-        <div class="alert alert-danger animated fadeIn" ng-show="emailError">{{emailError}}</div>
-        <form id="accountForm" ng-submit="accountUpdate(accountForm.$valid)">
+        <form id="accountForm" class="form-horizontal col-md-6" role="form" ng-submit="accountUpdate(accountForm.$valid)">
             <img ng-src="/images/images/{{userdata._id}}.jpeg" height="60" width="60">
-            <div class="input-wrapper">
-                <label>Name</label>
-                <input required id="name" type="text" name="name" placeholder="Full Name"
-                       ng-model="userdata.name">
-
-                <div class="error_message">Please enter a correct info #</div>
-                <span class="pic user"></span>
+            <div class="form-group">
+                <label mean-token="'create-name'" class="col-md-3 control-label" >Name</label>
+                    <input  class="col-md-6" required id="name" type="text" name="name" placeholder="Full Name" ng-model="userdata.name">
+                    <div class="error_message">Please enter a correct info #</div>
+            </div>
+            <div class="form-group">
+                <label mean-token="'create-name'" class="col-md-3 control-label" >Email</label>
+                    <input class="col-md-6" required id="email_block" type="email" name="email" placeholder="Email Address" ng-model="userdata.email">
+                    <div class="error_message">Please enter a correct info #</div>
             </div>
 
-            <div class="input-wrapper">
-                <label>Email</label>
-                <input required id="email_block" type="email" name="email" placeholder="Email Address"
-                       ng-model="userdata.email">
-
-                <div class="error_message">Please enter a correct info #</div>
-                <span class="pic email"></span>
+            <div class="form-group">
+                <label mean-token="'create-name'" class="col-md-3 control-label" >User Name</label>
+                    <input class="col-md-6" required id="username" type="text" name="username" placeholder="Username" ng-model="userdata.username">
+                    <div class="error_message">Please enter a correct info #</div>
             </div>
-
-            <div class="input-wrapper">
-                <label>User Name</label>
-                <input required id="username" type="text" name="username" placeholder="Username"
-                       ng-model="userdata.username">
-
-                <div class="error_message">Please enter a correct info #</div>
-                <span class="pic username"></span>
-            </div>
-            <div data-ng-controller="FileUploadController" >
-
+            <div data-ng-controller="FileUploadController" class="form-group">
                 <file-upload file-dest="'/images/'" upload-callback="uploadFinished(files)" upload-file-callback="uploadFileCallback(file)"></file-upload>
                 <div ng-if = "count == 1">
                     <img ng-src="/images/images/{{userdata._id}}.jpeg" height="200" width="200">
@@ -47,3 +35,6 @@
         </form>
     </div>
 </div>
+
+
+

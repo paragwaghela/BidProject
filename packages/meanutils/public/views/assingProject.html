@@ -16,27 +16,15 @@
     <span>{{project.price}}</span>
 </div>
 
-<div>User Name
-    <span>{{assingUser.userName}}</span>
+<div>User Name :
+    <span>{{assingUser.username}}</span>
 </div>
-<div>Project Discription:
-    <span>{{assingUser.bid}}</span>
+<div><span>Email : </span>
+    <span>{{assingUser.email}}</span>
 </div>
-<div><span>Project DeadLine</span>
-    <span>{{assingUser.day}}</span>
-</div>
-<div><span>Project Budget</span>
-    <span>{{assingUser.initialmileston}}</span>
-</div>
-
     <br>
-<div>
-    <a data-ng-href="#!/meanutils/example/user/detail">
-        <button mean-token="'create-submit'" class="btn btn-info">User Detail</button>
-    </a>
-    <a data-ng-href="#!/meanutils/example/project/bid/{{project.userId}}">
-        <button mean-token="'create-submit'" class="btn btn-info">Assing Project </button>
-    </a>
+<div ng-if = "!project.assingProject">
+    <button mean-token="'create-submit'" class="btn btn-info" ng-click="assing(assingUser._id)">Assing Project </button>
 </div>
 </div>
 </div>

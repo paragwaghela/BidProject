@@ -22,8 +22,8 @@ module.exports = function(Meanutils, app, auth) {
 
     app.route('/meanutils/example/projects/:projectId')
         .get(auth.isMongoId, projects.show)
-        //.put(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.update);
-        //.delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.destroy);
+        .put(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.updateProject)
+        .delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.deleteProject);
     // Finish with setting up the Id param
 
     app.param('projectId', projects.project);

@@ -42,6 +42,17 @@ var ProjectSchema = new Schema({
         type : String,
         trim :true
     },
+    assingProject:{
+        type: Boolean,
+        defalut :false
+    },
+    completeProject:{
+        type: Boolean,
+        defalut :false
+    },
+    assingProjectTo:{
+        type: String
+    },
     price:{
         type: Number
     },

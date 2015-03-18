@@ -24,9 +24,8 @@ angular.module('mean.meanutils').config(['$stateProvider', '$locationProvider',
             templateUrl: 'meanutils/views/biding.html'
         })
         .state('project Assing', {
-            url: '/meanutils/example/project/assing/:projectId',
+            url: '/meanutils/example/project/assing/:projectId/:userId',
             templateUrl: 'meanutils/views/assingProject.html'
-
         })
         .state('users', {
             url: '/meanutils/users',
@@ -46,6 +45,10 @@ angular.module('mean.meanutils').config(['$stateProvider', '$locationProvider',
         }).state("UploadImage",{
            url: '/meanutils/example/uploadImage',
            templateUrl:'meanutils/views/account.html'
+        })
+        .state('project update', {
+            url: '/meanutils/example/project/update/:projectId',
+            templateUrl: 'meanutils/views/updateProjectDetail.html'
         });
     }
 ]);

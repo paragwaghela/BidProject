@@ -15,6 +15,11 @@
     <b>Project Budget</b>
     <div>{{project.price}}</div>
     <br>
+    <div class="form-group" ng-if="project.createdBy === global.user._id">
+        <a data-ng-href="#!/meanutils/example/project/update/{{project._id}}">
+            <button mean-token="'create-submit'" class="btn btn-info">Update</button>
+        </a>
+    </div>
     <div class="form-group">
     <div ng-if="allow">
             <a data-ng-href="#!/meanutils/example/project/bid/{{project._id}}">
@@ -22,7 +27,11 @@
             </a>
         </div>
     </div>
-
+    <div ng-if = "project.assingProject">
+        <span>Project is assing to the user for detail </span>
+        <a data-ng-href="#!/meanutils/example/project/assing/{{project._id}}/{{project.assingProjectTo}}">click here</a>
+    </div>
+    <div ng-if = "!project.assingProject" >
     <div data-ng-if="bidUsers.length != 0">
      <table class="table table-striped">
         <thead>
@@ -40,16 +49,22 @@
             <td>{{user.day}}</td>
             <td>{{user.initialmileston}}</td>
             <td>
-                <div class="form-group" ng-if="allow" ng-if="project.createdBy === global.user._id">
-                <div class="col-md-offset-3 col-md-9">
-                    <a data-ng-href="#!/meanutils/example/project/assing/{{project._id}}">
-                        <button mean-token="'create-submit'" class="btn btn-info">Hire</button>
-                    </a>
+                <div ng-if= "!project.assingProject" >
+                    <div ng-if="expired == false" >
+                        <div class="form-group" ng-if="project.createdBy === global.user._id">
+                            <div class="col-md-offset-3 col-md-9">
+                                <a data-ng-href="#!/meanutils/example/project/assing/{{project._id}}/{{user.userId}}">
+                                    <button mean-token="'create-submit'" class="btn btn-info">Hire</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div></td>
+            </td>
         </tr>
         </tbody>
     </table>
+    </div>
     </div>
     <div data-ng-if="bidUsers.length === 0">
         <h3>No one can bid for this project </h3>
