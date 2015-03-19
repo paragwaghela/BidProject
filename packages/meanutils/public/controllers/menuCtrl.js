@@ -30,10 +30,13 @@ angular.module('mean.meanutils').controller('menuController', ['$scope', '$locat
             $scope.roles.push($scope.submenu.value1, $scope.submenu.value2);
             $scope.submenu.push({title: $scope.submenu.title, reference:$scope.submenu.reference, roles: $scope.roles });
             console.log($scope.submenu);
+           // $scope.submenu.push({});
+
+
         };
 
-        $scope.deleteOp = function() {
-
+        $scope.deleteOp = function(idx) {
+            $scope.submenu.splice(idx, 1);
         };
         $scope.createMenu = function (isValid) {
 
