@@ -11,7 +11,7 @@ module.exports = function(System, app, auth, database) {
       var defaultMenu = req.query.defaultMenu || [];
 
       if (!Array.isArray(defaultMenu)) defaultMenu = [defaultMenu];
-
+        console.log("check role",roles);
       var items = mean.menus.get({
         roles: roles,
         menu: menu,

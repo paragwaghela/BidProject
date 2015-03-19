@@ -20,7 +20,7 @@ Meanutils.register(function(app, auth, database) {
     Meanutils.menus.add({
         title: 'MeanUtilities',
         link: 'meanutils',
-        roles: ['user','admin'],
+        roles: ['user','superadmin','admin'],
         menu: 'main'
     });
 

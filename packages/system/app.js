@@ -34,7 +34,7 @@ SystemPackage.register(function(app, auth, database) {
   SystemPackage.menus.add({
     title: 'Log Out',
     link: 'Log Out',
-    roles: ['authenticated'],
+    roles: ['admin','user'],
     menu: 'account'
   });
   
