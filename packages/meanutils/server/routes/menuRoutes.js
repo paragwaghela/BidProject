@@ -11,6 +11,8 @@ module.exports = function (Meanutils, app, auth) {
 
     app.route('/meanutils')
         .get(menu.list);
+    app.route('/meanutils')
+        .post(auth.requiresLogin, menu.create);
     app.route('menus/:menuId').get(menu.read);
 
     // app.param('menuId', menu);

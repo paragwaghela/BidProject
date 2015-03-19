@@ -26,7 +26,7 @@ exports.user = function(req, res, next, id) {
 exports.create=function(req,res){
     var user = new User(req.body);
     user.createdBy = req.use;
-    console.log(req.body);
+
     user.save(function(err,data){
         if(err)
             return res.status(500).json({
@@ -92,7 +92,6 @@ exports.count = function (req, res , next) {
     User.find().count().exec(function(err, user) {
         if(err) {
             return res.status(400).send({
-
             });
         } else {
             count= user;
@@ -105,17 +104,14 @@ exports.count = function (req, res , next) {
 exports.all=function(req,res){
     var i = req.param('begin');
 
-    User.find({roles: { $in: ['user']}}).skip(i).limit(5).exec(function(err,user){
+    User.find({roles: { $in: ['user','admin']}}).skip(i).limit(5).exec(function(err,user){
         if(err){
             return res.status(500).json({
                 error: 'Cannot list the users'
             });
         }else
-        console.log(user);
             var arr = [{users: user, count: count}];
-
-
-        res.send(arr);
+            res.send(arr);
     });
 
 };

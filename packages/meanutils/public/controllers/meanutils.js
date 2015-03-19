@@ -12,12 +12,12 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.imgWidth = 200;
         $scope.id = $stateParams.userId;
         MenuService.query({role: Global.user.roles[0]}, function (menu) {
-            console.log('menu data', menu);
             $scope.menuUtil = menu;
+            console.log(menu);
         });
 
-
-        $scope.global = Global;
+                $scope.global = Global;
+        console.log( $scope.global.user.roles[0]);
         $scope.currentDate = new Date();
 
         $scope.myInterval = 2000;

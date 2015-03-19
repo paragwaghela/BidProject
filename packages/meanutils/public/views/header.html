@@ -8,10 +8,14 @@
 <!---->
         <ul class="navbar-nav nav">
             <li data-ng-repeat="item in menuUtil" role="presentation" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: #a94442">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: #a94442" ng-if="global.user.roles[0] == 'user'">
+                    {{item._id.menuName}} <span class="caret"></span>
+                </a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: #a94442"ng-if="global.user.roles[0] == 'superadmin' || global.user.roles[0] === 'admin' ">
                     {{item.menuName}} <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu"  role="menu">
+
+            <ul class="dropdown-menu"  role="menu">
                     <li data-ng-repeat="sub in item.submenu "><a ng-href="{{sub.reference}}" style="color: #a94442">{{sub.title}}</a></li>
                 </ul>
             </li>
