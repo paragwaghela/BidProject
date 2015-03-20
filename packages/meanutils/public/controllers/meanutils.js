@@ -106,6 +106,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 projectId: $stateParams.projectId
             }, function (project) {
                 $scope.project = project;
+                $scope.project.deadline =new Date(project.deadline);
                 $scope.bidUsers = project.bid;
                 var diff = Math.floor((new Date(project.deadline).getTime() / 86400000) - (new Date().getTime() / 86400000) + 1);
                 if (diff < 0)
