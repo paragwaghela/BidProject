@@ -3,8 +3,8 @@
  */
 'use strict';
 
-angular.module('mean.meanutils').controller('usersController', ['$scope', '$location','Global', 'MenuService','userService','$stateParams',
-    function($scope, $location, Global, MenuService, userService, $stateParams) {
+angular.module('mean.meanutils').controller('usersController', ['$scope', '$location', 'Global', 'MenuService', 'userService', '$stateParams',
+    function ($scope, $location, Global, MenuService, userService, $stateParams) {
 
         $scope.user = {};
         $scope.menuUtil = [];
@@ -20,14 +20,13 @@ angular.module('mean.meanutils').controller('usersController', ['$scope', '$loca
         $scope.currentPage = 1;
         $scope.maxSize = 2;
 
-        $scope.itemsPerPage= 5;
+        $scope.itemsPerPage = 5;
 
 
         var pagCount,
             begin = 0;
 
-        $scope.onSelect = function(item){
-            console.log(item)
+        $scope.onSelect = function (item) {
             $location.path('/meanutils/users');
         };
 
@@ -48,7 +47,7 @@ angular.module('mean.meanutils').controller('usersController', ['$scope', '$loca
                     $scope.filteredTodos = [];
 
 
-                    var begin = (($scope.currentPage -1) * $scope.itemsPerPage);
+                    var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
 
 
                     userService.query({
@@ -67,12 +66,12 @@ angular.module('mean.meanutils').controller('usersController', ['$scope', '$loca
 
         $scope.createUser = function (isValid) {
 
-            if( $scope.id) {
+            if ($scope.id) {
                 var userd = $scope.user;
 
-                userd.$update(function() {
+                userd.$update(function () {
                     $location.path('/meanutils/users');
-                }, function(errorResponse) {
+                }, function (errorResponse) {
                     $scope.error = errorResponse.data.message;
                 });
             } else {
@@ -94,22 +93,21 @@ angular.module('mean.meanutils').controller('usersController', ['$scope', '$loca
 
         };
 
-        $scope.findOne = function() {
+        $scope.findOne = function () {
             userService.get({
-               userId: $stateParams.userId
+                userId: $stateParams.userId
             }, function (user) {
                 $scope.user = user;
             });
         };
 
-        $scope.remove = function(index, userId) {
+        $scope.remove = function (index, userId) {
             $scope.user = userService.get({
                 userId: userId
-            }, function() {
-                $scope.user.$delete(function() {
+            }, function () {
+                $scope.user.$delete(function () {
                     $scope.filteredTodos.splice(index, 1);
                     $location.path('/meanutils/users');
-                    console.log('Deleted');
                 });
             });
         };

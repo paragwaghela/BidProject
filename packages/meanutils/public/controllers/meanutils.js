@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location','$http','Global', 'MenuService','ProjectService','userService','$stateParams',
-    function($scope, $location,$http,Global, MenuService, ProjectService,userService, $stateParams) {
+angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location', '$http', 'Global', 'MenuService', 'ProjectService', 'userService', '$stateParams',
+    function ($scope, $location, $http, Global, MenuService, ProjectService, userService, $stateParams) {
 
         $scope.project = {};
         $scope.menuUtil = [];
@@ -11,13 +11,13 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.imgHight = 200;
         $scope.imgWidth = 200;
         $scope.id = $stateParams.userId;
+
         MenuService.query({role: Global.user.roles[0]}, function (menu) {
             $scope.menuUtil = menu;
-            console.log(menu);
         });
 
-                $scope.global = Global;
-        console.log( $scope.global.user.roles[0]);
+        $scope.global = Global;
+        //console.log( $scope.global.user.roles[0]);
         $scope.currentDate = new Date();
 
         $scope.myInterval = 2000;
@@ -62,7 +62,6 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
                     var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
 
-
                     ProjectService.query({
                         begin: begin
                     }, function (data) {
@@ -85,7 +84,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                     createdBy: $scope.global.user._id,
                     createdUserName: $scope.global.user.username
                 });
-                console.log(project);
+
                 project.$save(function (response) {
                     $location.path('/meanutils/example/projects');
                 });
@@ -137,7 +136,6 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 });
 
                 project.$update(function () {
-                    console.log(project);
                     $location.path('/meanutils/example/projects');
                 });
             } else {
@@ -163,7 +161,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             userService.get({}, function (user) {
                 $scope.userdata = user;
             });
-        }
+        };
 
         $scope.account = function () {
             userService.get({
@@ -171,7 +169,8 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             }, function (user) {
                 $scope.userdata = user;
             });
-        }
+        };
+
         $scope.accountUpdate = function (isValid) {
             var userd = $scope.userdata;
             userd.$update(function () {
@@ -180,7 +179,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 $scope.error = errorResponse.data.message;
             });
 
-        }
+        };
 
         $scope.assing = function (userId) {
             var project = $scope.project;
@@ -193,7 +192,8 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 $scope.error = errorResponse.data.message;
             });
 
-        }
+        };
+
         $scope.updateProjectDetail = function (isValid) {
             if (isValid) {
                 var project = $scope.project;
@@ -204,7 +204,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 });
             } else
                 $scope.submitted = true;
-        }
+        };
 
         $scope.remove = function (index, projectId) {
             $scope.project = ProjectService.get({
@@ -213,7 +213,6 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 $scope.project.$delete(function () {
                     $scope.filteredTodos.splice(index, 1);
                     $location.path('/meanutils/example/projects');
-                    console.log('Deleted');
                 });
             });
         }
