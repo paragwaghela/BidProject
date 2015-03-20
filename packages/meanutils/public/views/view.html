@@ -22,7 +22,7 @@
     </div>
     <div class="form-group">
     <div ng-if="allow">
-        <div ng-if="global.user.roles == user">
+        <div ng-if="global.user.roles == 'user'">
             <a data-ng-href="#!/meanutils/example/project/bid/{{project._id}}">
                 <button mean-token="'create-submit'" class="btn btn-info">Bid</button>
             </a>
