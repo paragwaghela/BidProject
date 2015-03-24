@@ -52,7 +52,14 @@ angular.module('mean.meanutils').config(['$stateProvider', '$locationProvider',
                 url: '/meanutils/example/project/update/:projectId',
                 templateUrl: 'meanutils/views/updateProjectDetail.html'
             })
-
+            .state('menus ', {
+                url: '/meanutils/menu/menuList',
+                templateUrl: 'meanutils/views/menuList.html'
+            })
+            .state('menu by id', {
+                url: '/meanutils/:menuId',
+                templateUrl: 'meanutils/views/updateMenu.html'
+            })
             .state('menu ', {
                 url: '/meanutils/menu/addMenu',
                 templateUrl: 'meanutils/views/addMenu.html'

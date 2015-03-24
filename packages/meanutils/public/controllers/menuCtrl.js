@@ -9,11 +9,28 @@ angular.module('mean.meanutils').controller('menuController', ['$scope', '$locat
 
         $scope.submenu = [{}];
         $scope.roles = [];
-        $scope.value1 = "Admin";
-        $scope.value2 = "User";
-        $scope.id = $stateParams.menuId;
 
+        $scope.value1 = "admin";
+        $scope.value2 = "user";
+
+        $scope.id = $stateParams.menuId;
         $scope.global = Global;
+
+        $scope.all = function () {
+            menuService.query({role: "admin" || "user"}, function (menus) {
+                console.log(menus);
+                $scope.menuList = menus;
+            });
+        };
+
+        $scope.findOne = function () {
+            menuService.get({
+                menuId: $stateParams.menuId
+            }, function (menu) {
+                console.log(menu);
+                $scope.menu = menu;
+            });
+        };
 
         $scope.addOp = function () {
             if ($scope.submenu.value1 == true) {
@@ -34,21 +51,18 @@ angular.module('mean.meanutils').controller('menuController', ['$scope', '$locat
                 roles: $scope.roles
             });
             // $scope.submenu.push({});
-
-
         };
 
         $scope.deleteOp = function (idx) {
             $scope.submenu.splice(idx, 1);
         };
+
         $scope.createMenu = function (isValid) {
-
-
             if ($scope.id) {
-                var menu1 = $scope.user;
-
+                var menu1 = $scope.menu;
+                console.log("Saveing",menu1)
                 menu1.$update(function () {
-                    $location.path('/meanutils/users');
+                    $location.path('/meanutils/menu/menuList');
                 }, function (errorResponse) {
                     $scope.error = errorResponse.data.message;
                 });
@@ -61,31 +75,9 @@ angular.module('mean.meanutils').controller('menuController', ['$scope', '$locat
                 menu.$save(function (response) {
                     $location.path('/meanutils/users');
                 });
-
                 $scope.submitted = true;
             }
-
         };
-
-        $scope.findOne = function () {
-            userService.get({
-                userId: $stateParams.userId
-            }, function (user) {
-                $scope.user = user;
-            });
-        };
-
-        $scope.remove = function (index, userId) {
-            $scope.user = userService.get({
-                userId: userId
-            }, function () {
-                $scope.user.$delete(function () {
-                    $scope.filteredTodos.splice(index, 1);
-                    $location.path('/meanutils/users');
-                });
-            });
-        };
-
     }
 ]);
 

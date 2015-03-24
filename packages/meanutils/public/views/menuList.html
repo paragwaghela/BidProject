@@ -1,0 +1,34 @@
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color: white" data-ng-include="'/meanutils/views/header.html'"></div>
+<div data-ng-controller="menuController" data-ng-init="all()">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Menu Name</th>
+            <th>Sub Menu</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="menu in menuList">
+            <td>{{menu.menuName}}</td>
+
+            <td ng-repeat="sub in menu.submenu">
+                {{sub.title}};
+                <br>
+                {{sub.roles}}
+            </td>
+            <td>
+                <a class="btn btn-primary" href="#!/meanutils/{{menu._id}}">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </td>
+            <!--<td>-->
+                <!--<a class="btn btn-primary" data-ng-click="remove($index,menu._id);">-->
+                    <!--<i class="glyphicon glyphicon-trash"></i>-->
+                <!--</a>-->
+            <!--</td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>

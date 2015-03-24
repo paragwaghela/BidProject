@@ -8,12 +8,48 @@ var mongoose = require('mongoose'),
     _ = require('lodash');
 
 
-exports.read = function(req, res) {
-    console.log("REad",req.state);
-    res.json(req.state);
+
+exports.show = function(req, res) {
+    console.log("Project",req.menu)
+    res.json(req.menu);
 };
 
+exports.menuByID = function(req, res, next, id) {
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send({
+            message: 'is invalid'
+        });
+    }
+
+    Menu.findById(id).exec(function(err, menu) {
+        if (err) return next(err);
+        if (!menu) {
+            return res.status(404).send({
+                message: 'menu not found'
+            });
+        }
+
+        req.menu = menu;
+        next();
+    });
+};
+
+exports.update = function(req, res) {
+    var menu = req.menu;
+
+    menu = _.extend(menu, req.body);
+
+    menu.save(function(err) {
+        if (err) {
+            return res.status(400).send({
+                error: 'Cannot save'
+            });
+        } else {
+            res.json(menu);
+        }
+    });
+};
 exports.list = function(req, res) {
 
     var role = req.param('role');
