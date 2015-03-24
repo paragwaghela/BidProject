@@ -4,7 +4,7 @@
 
     Project Posted By
     <div>{{project.createdUserName}}</div>
-    <img ng-src="/images/images/{{project.createdBy}}.jpeg" height="60" width="60">
+    <img ng-src="/images/images/{{project.createdBy}}.png" height="60" width="60">
     <h3>{{project.title}}</h3>
     <span><b>Project Discription:</b></span>
     <div>{{project.discription}}</div>
@@ -29,6 +29,7 @@
         </div>
         </div>
     </div>
+        <p>This is an example of how we iterate on the files and provide links to download them</p>
     <div ng-if = "project.assingProject">
         <span>Project is assing to the user for detail </span>
         <a data-ng-href="#!/meanutils/example/project/assing/{{project._id}}/{{project.assingProjectTo}}">click here</a>

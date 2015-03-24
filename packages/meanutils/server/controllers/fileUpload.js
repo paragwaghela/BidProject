@@ -10,15 +10,15 @@ var fs = require('fs'),
     osSep = '/';
 
 
-function rename(file, dest, user, callback) {
-    fs.rename(file.path, directory + dest + user.id+'.jpeg', function(err) {
+function rename(file, dest,filename, user, callback) {
+    fs.rename(file.path, directory + dest + filename, function(err) {
         if (err) throw err;
         else
             callback({
                 success: true,
                 file: {
-                    src: '/images' + dest + user.id,
-                    name: user.id+'.jpeg',
+                    src: '/images' + dest + filename,
+                    name: filename,
                     size: file.size,
                     type: file.type,
                     created: Date.now(),
@@ -58,14 +58,19 @@ function mkdir_p(path, callback, position) {
 
 exports.upload = function(req, res) {
     var path = directory + req.body.dest;
+    console.log(req.body.dest);
+    if(req.files.file.type == 'image/jpeg')
+        var filename = req.user._id+".png";
+    else
+        var filename = req.files.file.name;
     if (!fs.existsSync(path)) {
         mkdir_p(path, function(err) {
-            rename(req.files.file, req.body.dest, req.user, function(data) {
+            rename(req.files.file, req.body.dest, filename,req.user, function(data) {
                 res.jsonp(data);
             });
         });
     } else {
-        rename(req.files.file, req.body.dest, req.user, function(data) {
+        rename(req.files.file, req.body.dest,filename, req.user, function(data) {
              res.jsonp(data);
         });
     }
