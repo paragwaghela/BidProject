@@ -10,8 +10,8 @@ angular.module('mean.meanutils').controller('menuController', ['$scope', '$locat
         $scope.submenu = [{}];
         $scope.roles = [];
 
-        $scope.value1 = "admin";
-        $scope.value2 = "user";
+        $scope.id = $stateParams.menuId;
+
 
         $scope.id = $stateParams.menuId;
         $scope.global = Global;
@@ -32,35 +32,36 @@ angular.module('mean.meanutils').controller('menuController', ['$scope', '$locat
             });
         };
 
-        $scope.addOp = function () {
-            if ($scope.submenu.value1 == true) {
+        $scope.addOp = function() {
+
+            if($scope.submenu.value1 == true){
                 $scope.submenu.value1 = 'admin';
             } else {
                 $scope.submenu.value1 = '';
             }
-            if ($scope.submenu.value2 == true) {
+            if($scope.submenu.value2 == true){
                 $scope.submenu.value2 = 'user';
             } else {
                 $scope.submenu.value2 = '';
             }
 
             $scope.roles.push($scope.submenu.value1, $scope.submenu.value2);
-            $scope.submenu.push({
-                title: $scope.submenu.title,
-                reference: $scope.submenu.reference,
-                roles: $scope.roles
-            });
-            // $scope.submenu.push({});
+            console.log("Roles arr",$scope.roles);
+            $scope.submenu.push({title: $scope.submenu.title, reference:$scope.submenu.reference, roles: $scope.roles });
+            console.log($scope.submenu);
+           // $scope.submenu.push({});
+
+
         };
 
-        $scope.deleteOp = function (idx) {
+        $scope.deleteOp = function(idx) {
             $scope.submenu.splice(idx, 1);
         };
-
         $scope.createMenu = function (isValid) {
+
             if ($scope.id) {
                 var menu1 = $scope.menu;
-                console.log("Saveing",menu1)
+                console.log("Saveing",menu1);
                 menu1.$update(function () {
                     $location.path('/meanutils/menu/menuList');
                 }, function (errorResponse) {

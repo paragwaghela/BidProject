@@ -27,7 +27,7 @@ module.exports = {
     */
   },
   app: {
-    name: 'Freelancer'
+    name: 'BidProject'
   },
   facebook: {
     clientID: 'APP_ID',

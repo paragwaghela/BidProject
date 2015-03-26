@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="project in filteredTodos | filter: selected" data-ng-href="#!/projects/{{project._id}}" >
+            <tr ng-repeat="project in filteredTodos | filter: selected || status" data-ng-href="#!/projects/{{project._id}}" >
                 <td><a data-ng-href="#!/meanutils/example/project/{{project._id}}">{{project.title}}</a></td>
                 <td>{{project.discription}}</td>
                 <td>{{project.created|date:'mediumDate'}}</td>

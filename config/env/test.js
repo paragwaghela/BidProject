@@ -6,7 +6,7 @@ module.exports = {
     port: 3001
   },
   app: {
-    name: 'Freelancer'
+    name: 'BidProject'
   },
   facebook: {
     clientID: 'APP_ID',

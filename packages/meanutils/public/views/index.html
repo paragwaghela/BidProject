@@ -1,293 +1,115 @@
 <div data-ng-controller="MeanutilsController">
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: white"
          data-ng-include="'/meanutils/views/header.html'"></div>
-    <br>
-    <!--New Code-->
-    <div class="article-row">
-        <div class="row">
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>What is Freelancer?</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">Everything you need to know about the basics of
-                            Freelancer!</p>
-                        <br>
-                        <br>
-                        <br>
+    <div id="wrapper">
+        <div id="page-wrapper">
 
-                    </div>
-                </article>
+            <div class="container-fluid">
 
-            </div>
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>Successful Freelancing with Freelancer.com</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">Freelancer.com opens the global job market to freelancers in
-                            all trades and professions. </p>
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Dashboard <small>Statistics Overview</small>
+                        </h1>
                     </div>
-                </article>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>How to Find Projects</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">A guide to searching for jobs at Freelancer.com</p>
-                        <br>
-                        <br>
-                        <br>
+                </div>
+                <br>
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{myProj}}</div>
+                                        <div>My Projects !</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a ui-sref="project">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>How to Bid</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">A step-by-step guide to bidding for jobs</p>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{compProj}}</div>
+                                        <div>Completed Projects !</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a ui-sref="project">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </article>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{totalProj}}</div>
+                                        <div>All Projects !</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a ui-sref="project">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--<div class="col-lg-3 col-md-6">-->
+                        <!--<div class="panel panel-red">-->
+                            <!--<div class="panel-heading">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-xs-3">-->
+                                        <!--<i class="fa fa-support fa-5x"></i>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-9 text-right">-->
+                                        <!--<div class="huge">13</div>-->
+                                        <!--<div>Support Tickets!</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<a href="#">-->
+                                <!--<div class="panel-footer">-->
+                                    <!--<span class="pull-left">View Details</span>-->
+                                    <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                                    <!--<div class="clearfix"></div>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
             </div>
+
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>How to Get Started at Freelancer.com</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">A step-by-step guide to joining Freelancer</p>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>What is Required to Become Verified?</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">To become Freelancer.com Verified, we require you provide
-                            proof of identity, Keycode Verification and proof of address.</p>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </article>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>Why Should I Verify My Identity?</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">Reasons to verify your Identity on Freelancer.com</p>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>What is the Know Your Customer Program?</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">Find out all about Freelancer.com's KYC program</p>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </article>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>Finding Opportunities on Freelancer.com</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">What can Freelancer.com do for you?</p>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>10 Tips for Writing an Effective Bid</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">Discover top tips for writing an effective bid</p>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>Narrow Your Focus for Success</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">By focussing on your core skills you can deliver the best
-                            work</p>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </article>
-
-            </div>
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>Contracts for Freelancer Work</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">What are contracts and how do they work?</p>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>How to Select the Right Bidder</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">Ask yourself these 4 questions when selecting a bidder</p>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>Tips for Posting Projects</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">Not sure whether to post a contest or a project? Find out
-                            here!</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>Contests Vs. Projects</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">Not sure whether to post a contest or a project? Find out
-                            here!</p>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>How do I pay the freelancer?</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">Learn how our payment and milestone system works</p>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>How To Hire with Freelancer.com</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">Learn our hiring process and how you can find the best
-                            freelancer for your job</p>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="article-snapshot is-medium">
-                    <div class="article-snapshot-inner">
-                        <header>
-                            <h3 class="article-snapshot-heading">
-                                <u>Tips for New Freelancers</u>
-                            </h3>
-                        </header>
-                        <p class="article-snapshot-blurb">You've just started out, learn how to go from zero to hero</p>
-                    </div>
-                </article>
-            </div>
-        </div>
     </div>
 </div>

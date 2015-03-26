@@ -6,6 +6,8 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
         $scope.project = {};
         $scope.menuUtil = [];
+        $scope.status='Assing';
+
         $scope.filteredTodos = [];
         $scope.imageStoreTemp = 'meanutils/assets/img';
         $scope.imgHight = 200;
@@ -17,15 +19,13 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         });
 
         $scope.global = Global;
-        //console.log( $scope.global.user.roles[0]);
+        console.log( $scope.global.user);
         $scope.currentDate = new Date();
 
         $scope.myInterval = 2000;
-        $scope.slides = [{image: '/images/aa.jpeg', text: "Hey This is carsoul"},
-            {image: '/images/av.jpeg', text: "Hey This is carsoul"},
-            {image: '/images/gt.jpeg', text: "Hey This is carsoul"},
-            {image: '/images/pf1.jpeg', text: "Hey This is carsoul"},
-            {image: '/images/pf2.jpeg', text: "Hey This is carsoul"}];
+        $scope.slides = [{image: '/images/1.jpeg', text: "Hey This is carsoul1"},
+            {image: '/images/111.jpeg', text: "Hey This is carsoul2"},
+            {image: '/images/pf2.jpeg', text: "Hey This is carsoul3"}];
 
         $scope.package = {
             name: 'meanutils'
@@ -41,6 +41,24 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
         var pagCount,
             begin = 0;
+            var i = 0,j=0;
+
+        ProjectService.query(function(proj){
+            //console.log("MY Projects",proj)
+            $scope.totalProj = proj[0].projects.length;
+
+            angular.forEach(proj[0].projects,function(val){
+                if($scope.global.user._id === val.assingProjectTo){
+                    i = i + 1;
+                } else if(status === 'completed'){
+                    j = j + 1;
+                }
+            });
+            $scope.myProj = i;
+            $scope.compProj = j;
+            console.log("Single val", i);
+
+        });
 
 
         $scope.all = function () {
@@ -58,7 +76,6 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
                 $scope.$watch('currentPage + numPerPage', function () {
                     $scope.filteredTodos = [];
-
 
                     var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
 
