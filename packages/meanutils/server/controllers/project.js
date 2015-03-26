@@ -120,3 +120,16 @@ exports.deleteProject = function(req, res) {
     });
 };
 
+exports.myProject = function(req,res){
+    console.log("Here In my project",req.body.userId);
+    Project.find({'assingProjectTo' : req.body.userId}).exec(function(err,data){
+       if(err) {
+           return res.status(500).json({
+               error: "Projects not able to find"
+           });
+       }else {
+           console.log(data);
+           res.json(data);
+           }
+    });
+}

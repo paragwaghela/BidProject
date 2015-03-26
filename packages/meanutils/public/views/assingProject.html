@@ -2,29 +2,42 @@
 <div class="navbar navbar-inverse navbar-fixed-top"  style="background-color: white" data-ng-include="'/meanutils/views/header.html'"></div>
 <div data-ng-controller="MeanutilsController" data-ng-init="UsersOnProject()">
 
-<h1>Assign project</h1>
-<div>Project Title
+<h1 align="center">Assign project</h1>
+<div><h4>Project Title:</h4>
     <span>{{project.title}}</span>
 </div>
- <div>Project Discription:
+ <div><h4>Project Discription:</h4>
     <span>{{project.discription}}</span>
  </div>
-<div><span>Project DeadLine</span>
+<div><h4><span>Project DeadLine:</span></h4>
     <span>{{project.deadline| date:'mediumDate' }}</span>
 </div>
-<div><span>Project Budget</span>
+<div><h4><span>Project Budget:</span></h4>
     <span>{{project.price}}</span>
 </div>
-
-<div>User Name :
+<div><h2 align="center"> Assigned User </h2></div>
+<div><h4>User Name :</h4>
     <span>{{assingUser.username}}</span>
 </div>
-<div><span>Email : </span>
+<div><h4><span>Email : </span></h4>
     <span>{{assingUser.email}}</span>
 </div>
-    <br>
+
+<div ng-if = "assingUser._id === global.user._id">
+<div><h2 align="center"> Owner of project </h2></div>
+<div><h4>User Name :</h4>
+    <span>{{Owner.username}}</span>
+</div>
+<div><h4><span>Email : </span></h4>
+    <span>{{Owner.email}}</span>
+</div>
+    </div>
+<br>
 <div ng-if = "!project.assingProject">
-    <button mean-token="'create-submit'" class="btn btn-info" ng-click="assing(assingUser._id)">Assing Project </button>
+    <button mean-token="'create-submit'" class="btn btn-info" confirmed-click="assigned(assingUser._id)" ng-confirm-click="Are you Sure ?">Assing Project </button>
+    <a data-ng-href="#!/meanutils/example/project/{{project._id}}">
+        <button mean-token="'create-submit'" class="btn btn-info">Cancel </button>
+    </a>
 </div>
 </div>
 </div>

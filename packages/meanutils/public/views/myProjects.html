@@ -1,0 +1,53 @@
+<div class="navbar navbar-inverse navbar-fixed-top"  style="background-color: white" data-ng-include="'/meanutils/views/header.html'"></div>
+<div data-ng-controller="MeanutilsController" data-ng-init="myProjects()">
+    <h2>My projects</h2>
+    <div class="col-md-3">
+        <input class="form-control" type="search" ng-model="selected" placeholder="search" />
+        <!--<input type="text" placeholder="Search" ng-model="selected" typeahead="pro.title for pro in filteredTodos | filter:$viewValue | limitTo:8" class="form-control">-->
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>Deadline</th>
+            <th>status</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="project in MyProjecs | filter: selected" data-ng-href="#!/projects/{{project._id}}" >
+            <td><a data-ng-href="#!/meanutils/example/project/{{project._id}}">{{project.title}}</a></td>
+            <td>{{project.discription}}</td>
+            <td>{{project.created|date:'mediumDate'}}</td>
+            <td>{{project.deadline| date:'mediumDate'}}</td>
+            <td>{{project.status}}</td>
+            <td>{{project.price | currency:"&#8377;"}}</td>
+           <!-- <td><div ng-if="!project.assingProject">
+                <div class="form-group" ng-if="project.createdBy === global.user._id">
+                    <a class="btn btn-primary" confirmed-click="remove($index,project._id);" ng-confirm-click="Are you Sure ? You want delete it!!?">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </div>
+            </div>
+            </td>-->
+            <!--<td><div ng-if="allow">
+                <div ng-if="global.user.roles == 'user'">
+                    <a data-ng-href="#!/meanutils/example/project/bid/{{project._id}}">
+                        <button mean-token="'create-submit'" class="btn btn-info">Bid</button>
+                    </a>
+                </div>
+            </div>-->
+            </td>
+            <td ng-if="project.assingProject">
+                <a data-ng-href="#!/meanutils/example/project/assing/{{project._id}}/{{project.assingProjectTo}}">
+                    <button mean-token="'create-submit'" class="btn btn-info">View User Detail </button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" num-pages="numofPages" max-size="maxSize" items-per-page ="itemsPerPage"></pagination>
+</div>

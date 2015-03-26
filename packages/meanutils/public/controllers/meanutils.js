@@ -11,7 +11,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.imgHight = 200;
         $scope.imgWidth = 200;
         $scope.id = $stateParams.userId;
-
+        $scope.numbers=["0","10","20","30","40","50","60","70","80","90","100"];
         MenuService.query({role: Global.user.roles[0]}, function (menu) {
             $scope.menuUtil = menu;
         });
@@ -93,7 +93,6 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 this.deadline = '';
                 this.price = '';
             } else {
-                window.alert("else Add project");
                 $scope.submitted = true;
             }
         };
@@ -150,12 +149,18 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 projectId: $stateParams.projectId
             }, function (project) {
                 $scope.project = project;
+                userService.get({
+                    userId: $scope.project.createdBy
+                }, function (user) {
+                    $scope.Owner = user;
+                });
             });
             userService.get({
                 userId: $stateParams.userId
             }, function (user) {
                 $scope.assingUser = user;
             });
+
         };
 
         $scope.UserDetail = function () {
@@ -182,9 +187,9 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
         };
 
-        $scope.assing = function (userId) {
+        $scope.assigned = function (userId) {
             var project = $scope.project;
-            project.status = "Assing";
+            project.status = "Assigned";
             project.assingProject = true;
             project.assingProjectTo = userId;
             project.$update(function () {
@@ -198,6 +203,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.updateProjectDetail = function (isValid) {
             if (isValid) {
                 var project = $scope.project;
+                console.log(project);
                 project.$update(function (response) {
                     $location.path('/meanutils/example/project/' + response._id);
                 }, function (errorResponse) {
@@ -215,6 +221,39 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                     $scope.filteredTodos.splice(index, 1);
                     $location.path('/meanutils/example/projects');
                 });
+            });
+        }
+        $scope.myProjects= function(){
+            /*ProjectService.query({
+                begin: begin
+            }, function (projects) {
+
+                pagCount = projects[0].count;
+
+                $scope.totalItems = pagCount;
+                $scope.currentPage = 1;
+                $scope.maxSize = 2;
+                $scope.itemsPerPage = 5;
+                $scope.numofPages = Math.ceil($scope.totalItems / $scope.itemsPerPage);
+
+                $scope.$watch('currentPage + numPerPage', function () {
+                    $scope.filteredTodos = [];
+
+
+                    var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
+
+                    ProjectService.query({
+                        begin: begin
+                    }, function (data) {
+                        $scope.filteredTodos = data[0].projects;
+
+                    });
+                });
+            });*/
+            $http.post('/myProjects',{
+                    userId : $scope.global.user._id
+            }).success(function(data) {
+                $scope.MyProjecs = data;
             });
         }
     }

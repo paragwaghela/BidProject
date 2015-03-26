@@ -1,6 +1,6 @@
 <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: white" data-ng-include="'/meanutils/views/header.html'"></div>
 <div ng-controller="MeanutilsController" data-ng-init="findOne()">
-    <h1>view project</h1>
+    <h1 align="center">View Project</h1>
 
     Project Posted By
     <div>{{project.createdUserName}}</div>
@@ -13,12 +13,24 @@
     <div>{{project.deadline| date:'mediumDate' }}</div>
     <br>
     <b>Project Budget</b>
-    <div>{{project.price}}</div>
+    <div>{{project.price | currency:"&#8377;"}}</div>
     <br>
+    <div align="left" class="containerProgress">
+    <div class="progress">
+        <div class="bar" ng-style="{width:((project.mileston / 100) * 100) + '%'}">
+            <!-- show calculated percentage if total amount raised is <= 100% -->
+            <span class="percent" ng-show="((project.mileston / 100) * 100) <= 100">{{((project.mileston / 100) * 100) | number:0}}%</span>
+            <!-- show maximum percentage if total amount raised is > 100% -->
+            <span class="percent" ng-show="((project.mileston / 100) * 100) > 100">100%</span>
+        </div>
+    </div>
+    </div>
+    <div data-ng-if="!project.assingProject">
     <div class="form-group" ng-if="project.createdBy === global.user._id">
         <a data-ng-href="#!/meanutils/example/project/update/{{project._id}}">
             <button mean-token="'create-submit'" class="btn btn-info">Update</button>
         </a>
+    </div>
     </div>
     <div class="form-group">
     <div ng-if="allow">
@@ -27,10 +39,10 @@
                 <button mean-token="'create-submit'" class="btn btn-info">Bid</button>
             </a>
         </div>
-        </div>
+    </div>
     </div>
     <div ng-if = "project.assingProject">
-        <span>Project is assing to the user for detail </span>
+        <span>Project is Assigned to the user for detail </span>
         <a data-ng-href="#!/meanutils/example/project/assing/{{project._id}}/{{project.assingProjectTo}}">click here</a>
     </div>
     <div ng-if = "!project.assingProject" >
@@ -38,14 +50,16 @@
      <table class="table table-striped">
         <thead>
         <tr>
+            <th></th>
             <th>User Name</th>
             <th>Bid</th>
             <th>Number of days of deliver </th>
-            <th>Initial milestone</th>
+            <th>Initial milestone(%)</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="user in bidUsers | filter: selected" >
+            <td><img ng-src="/images/images/{{user.userId}}.png" height="40" width="40"></td>
             <td>{{user.userName}}</td>
             <td>{{user.bid}}</td>
             <td>{{user.day}}</td>
@@ -63,12 +77,25 @@
                     </div>
                 </div>
             </td>
+            <td>
+                <div ng-if= "!project.assingProject" >
+                    <div ng-if="expired == false" >
+                        <div class="form-group" ng-if="user.userId === global.user._id">
+                            <div class="col-md-offset-3 col-md-9">
+                                <!--<a data-ng-href="#!/meanutils/example/project/assing/{{project._id}}/{{user.userId}}">-->
+                                    <button mean-token="'create-submit'" class="btn btn-info">Edit</button>
+                                <!--</a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
         </tr>
         </tbody>
     </table>
     </div>
     </div>
     <div data-ng-if="bidUsers.length === 0">
-        <h3>No one can bid for this project </h3>
+
     </div>
 </div>

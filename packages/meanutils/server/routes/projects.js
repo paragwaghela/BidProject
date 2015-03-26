@@ -19,7 +19,8 @@ module.exports = function(Meanutils, app, auth) {
         .get(projects.count, projects.all)
         .put(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.update)
         .post(auth.requiresLogin, projects.create);
-
+    app.route('/myProjects')
+        .post(projects.myProject);
     app.route('/meanutils/example/projects/:projectId')
         .get(auth.isMongoId, projects.show)
         .put(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.updateProject)

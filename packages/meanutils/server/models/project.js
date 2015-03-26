@@ -28,7 +28,7 @@ var ProjectSchema = new Schema({
     },
     status: {
         type : String,
-        default : 'New'
+        default : 'Open'
     },
     title: {
         type: String,
@@ -56,6 +56,12 @@ var ProjectSchema = new Schema({
     price:{
         type: Number
     },
+    mileston:{
+        type: Number
+    },
+    uploadedFiles:[{
+       fileName:{type:String}
+    }],
     bid :[{
         userId : {type :String},
         userName : {type:String},

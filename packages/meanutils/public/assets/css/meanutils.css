@@ -1,6 +1,33 @@
-.meanutils-example h1: {
-	background-color: purple
-}
+
 .greyside {
      background-color:#efefef;
  }
+.progress {
+    background-color:#bdd3fb;
+    border-radius:4px;
+    box-shadow:0 1px 1px rgba(0,0,0,.15) inset;
+    height:27px;
+    margin-bottom:1%;
+    overflow:hidden;
+}
+
+.bar {
+    background-color:#427ae3;
+    box-shadow:0 -1px 1px rgba(0,0,0,.15) inset;
+    color:#fff;
+    float:left;
+    height:100%;
+    position:relative;
+    text-align:left;
+}
+
+.bar > .percent {
+    font-size:.9rem;
+    left:8px;
+    position:absolute;
+    top:3px;
+}
+.containerProgress {
+    padding:0 0 2%;
+    width:30%;
+}
