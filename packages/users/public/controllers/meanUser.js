@@ -41,6 +41,7 @@ angular.module('mean.users')
           password: $scope.user.password
         })
           .success(function(response) {
+               // window.alert(response);
             // authentication OK
             $scope.loginError = 0;
             $rootScope.user = response.user;
@@ -57,7 +58,7 @@ angular.module('mean.users')
                 window.location = response.redirect;
               }
             } else {
-              $location.url('/');
+              $location.url('/meanutils');
             }
           })
           .error(function() {

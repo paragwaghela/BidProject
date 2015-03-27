@@ -24,7 +24,7 @@
                     <div class="error_message">Please enter a correct info #</div>
             </div>
             <div data-ng-controller="FileUploadController" class="form-group">
-                <file-upload file-dest="'/images/'" upload-callback="uploadFinished(files)" upload-file-callback="uploadFileCallback(file)"></file-upload>
+                <ui-upload file-dest="'/images/'" upload-callback="uploadFinished(files)" upload-file-callback="uploadFileCallback(file)"></ui-upload>
                 <div ng-if = "count == 1">
                     <img ng-src="/images/images/{{userdata._id}}.png" height="200" width="200">
                 </div>

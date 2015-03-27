@@ -59,9 +59,9 @@ var ProjectSchema = new Schema({
     mileston:{
         type: Number
     },
-    uploadedFiles:[{
-       fileName:{type:String}
-    }],
+    uploadedFiles: {
+        type: Array
+    },
     bid :[{
         userId : {type :String},
         userName : {type:String},

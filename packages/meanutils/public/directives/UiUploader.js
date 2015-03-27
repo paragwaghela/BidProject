@@ -1,9 +1,9 @@
 /**
- * Created by sumasoft on 3/16/15.
+ * Created by sumasoft on 3/25/15.
  */
 'use strict';
 
-angular.module('mean.meanutils').directive('fileUpload', function($upload) {
+angular.module('mean.meanutils').directive('uiUpload', function($upload) {
     return {
         templateUrl: 'meanutils/views/uploadImage.html',
         scope: {
@@ -21,8 +21,7 @@ angular.module('mean.meanutils').directive('fileUpload', function($upload) {
                 //$files: an array of files selected, each file has name, size, and type.
                 for (var i = 0; i < $files.length; i++) {
                     var file = $files[i];
-                    console.log($upload);
-                    /*$scope.upload = $upload.upload({
+                    $scope.upload = $upload.upload({
                         url: 'fileUpload/upload',
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -43,19 +42,16 @@ angular.module('mean.meanutils').directive('fileUpload', function($upload) {
                             }
                             files.push(data.file);
                         }
-
-                    });*/
-                    files.push(file);
-                    if (files.length === $files.length) {
-                        if (angular.isDefined(attrs.uploadCallback)) {
-                            $scope.uploadCallback({
-                                files: files
-                            });
+                        if (files.length === $files.length) {
+                            if (angular.isDefined(attrs.uploadCallback)) {
+                                $scope.uploadCallback({
+                                    files: files
+                                });
+                            }
                         }
-                    }
+                    });
                 }
-
-             };
+            };
         }
     };
 });

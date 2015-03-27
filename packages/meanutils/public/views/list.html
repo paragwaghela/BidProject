@@ -41,6 +41,16 @@
                     </div>
                 </td>
                 <td ng-if="project.assingProject">
+                    <div class="containerProgress">
+                        <div class="progress">
+                            <div class="bar" ng-style="{width:((project.mileston / 100) * 100) + '%'}">
+                                <!-- show calculated percentage if total amount raised is <= 100% -->
+                                <span class="percent" ng-show="((project.mileston / 100) * 100) <= 100">{{((project.mileston / 100) * 100) | number:0}}%</span>
+                                <!-- show maximum percentage if total amount raised is > 100% -->
+                                <span class="percent" ng-show="((project.mileston / 100) * 100) > 100">100%</span>
+                            </div>
+                        </div>
+                    </div>
                     <a data-ng-href="#!/meanutils/example/project/assing/{{project._id}}/{{project.assingProjectTo}}">
                         <button mean-token="'create-submit'" class="btn btn-info">View User Detail </button>
                     </a>

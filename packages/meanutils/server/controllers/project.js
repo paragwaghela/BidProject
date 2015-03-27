@@ -88,6 +88,20 @@ exports.updateProject = function(req, res){
         }
     });
 }
+
+exports.uploadFiles = function(req,res){
+    console.log(req.body);
+    Project.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.projectId)},{$push:{uploadedFiles : req.body.uploadedFiles}}).exec(function(err,data) {
+        if (err) {
+            return res.status(500).json({
+                error: 'Cannot add the bid'
+            });
+        } else {
+            res.json(data);
+        }
+    });
+}
+
 /**
  * Update an Project
  */

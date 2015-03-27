@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location', '$http', 'Global', 'MenuService', 'ProjectService', 'userService', '$stateParams',
-    function ($scope, $location, $http, Global, MenuService, ProjectService, userService, $stateParams) {
+angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location', '$http', 'Global', 'MenuService', 'ProjectService', 'userService', '$stateParams','$upload',
+    function ($scope, $location, $http, Global, MenuService, ProjectService, userService, $stateParams,$upload) {
 
         $scope.project = {};
         $scope.menuUtil = [];
@@ -11,6 +11,9 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.imgHight = 200;
         $scope.imgWidth = 200;
         $scope.id = $stateParams.userId;
+        $scope.files = [];
+        $scope.uplodingfiles = [];
+        var files = [];
         $scope.numbers=["0","10","20","30","40","50","60","70","80","90","100"];
         MenuService.query({role: Global.user.roles[0]}, function (menu) {
             $scope.menuUtil = menu;
@@ -203,13 +206,46 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.updateProjectDetail = function (isValid) {
             if (isValid) {
                 var project = $scope.project;
-                console.log(project);
-                project.$update(function (response) {
-                    $location.path('/meanutils/example/project/' + response._id);
-                }, function (errorResponse) {
-                    $scope.error = errorResponse.data.message;
-                });
-            } else
+               /* var $files=$scope.files
+                    for (var i = 0; i < $files.length; i++) {
+                        var file = $files[i];
+                        console.log($upload);
+                        $scope.upload = $upload.upload({
+                            url: 'fileUpload/upload',
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            },
+                            data: {
+                                dest: '/projectFile/' + $scope.project._id + '/'
+                            },
+                            file: file
+                        }).progress(function (evt) {
+                            console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                        }).success(function (data, status, headers, config) {
+                            if (data.success) {
+                                files.push(data.file.name);
+                                console.log(files);
+                            }
+
+                        });
+                    };*/
+                   // project.uplodingfiles = $scope.files
+                    $scope.uploadFile($scope.files);
+                    project.$update(function (response) {
+                        $http.post('/uploadFiles',{
+                            projectId: $scope.project._id,
+                            uploadedFiles : $scope.files
+                        }).success(function(data){
+                            $location.path('/meanutils/example/project/' + response._id);
+                        });
+                    }, function (errorResponse) {
+                        $scope.error = errorResponse.data.message;
+                    });
+                }
+
+                //
+
+             else
                 $scope.submitted = true;
         };
 
@@ -224,37 +260,44 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             });
         }
         $scope.myProjects= function(){
-            /*ProjectService.query({
-                begin: begin
-            }, function (projects) {
-
-                pagCount = projects[0].count;
-
-                $scope.totalItems = pagCount;
-                $scope.currentPage = 1;
-                $scope.maxSize = 2;
-                $scope.itemsPerPage = 5;
-                $scope.numofPages = Math.ceil($scope.totalItems / $scope.itemsPerPage);
-
-                $scope.$watch('currentPage + numPerPage', function () {
-                    $scope.filteredTodos = [];
-
-
-                    var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
-
-                    ProjectService.query({
-                        begin: begin
-                    }, function (data) {
-                        $scope.filteredTodos = data[0].projects;
-
-                    });
-                });
-            });*/
             $http.post('/myProjects',{
                     userId : $scope.global.user._id
             }).success(function(data) {
                 $scope.MyProjecs = data;
             });
         }
+
+        $scope.uploadFile = function($files) {
+           for (var i = 0; i < $files.length; i++) {
+               var file = $files[i];
+                console.log($upload);
+                $scope.upload = $upload.upload({
+                    url: 'fileUpload/upload',
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                    data: {
+                        dest: '/projectFile/'+$scope.project._id+'/'
+                    },
+                    file: file
+                }).progress(function(evt) {
+                    console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                }).success(function(data, status, headers, config) {
+                    if (data.success) {
+                        files.push(data.file.name);
+                        console.log(files);
+                    }
+
+                });
+           };
+            console.log(files);
+        };
+        $scope.uploadFinished = function(files) {
+            console.log("uploaded obj", files)
+            for(var i=0; i < files.length;i++)
+                $scope.files.push({fileName: files[i].name});
+
+        };
+
     }
 ]);

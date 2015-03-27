@@ -7,7 +7,7 @@
         <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.title.$invalid }">
             <label mean-token="'create-name'" class="col-md-3 control-label">Project Title:</label>
             <div class="col-md-9">
-                <input name="title" ng-readonly="" type="text" class="form-control" data-ng-model="project.title" id="title" placeholder="Title of user" required >
+                <input name="title" ng-readonly="global.user.roles[0]==='user'" type="text" class="form-control" data-ng-model="project.title" id="title" placeholder="Title of user" required >
                 <div ng-show="submitted && projectForm.title.$invalid" class="help-block">
                     <p ng-show="projectForm.title.$error.required">Name is required</p>
                 </div>
@@ -16,7 +16,7 @@
         <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.discription.$invalid }">
             <label mean-token="'create-email'" class="col-md-3 control-label">Project Discription:</label>
             <div class="col-md-9">
-                <input name="discription" type="text" class="form-control" data-ng-model="project.discription" id="discription" placeholder="Project Descriptiopn " required>
+                <input name="discription" ng-readonly="global.user.roles[0]==='user'" type="text" class="form-control" data-ng-model="project.discription" id="discription" placeholder="Project Descriptiopn " required>
                 <div ng-show="submitted && projectForm.discription.$invalid" class="help-block">
                     <p ng-show="projectForm.discription.$error.required">Invalid Email address</p>
                 </div>
@@ -26,7 +26,7 @@
             <label mean-token="'create-username'" class="col-md-3 control-label">Project DeadLine</label>
             <div class="col-md-9">
 
-                <input name="deadline" type="Date" class="form-control"  id="deadline" data-ng-model="project.deadline" placeholder="deadline" required>
+                <input name="deadline" ng-readonly="global.user.roles[0]==='user'|| project.assingProject === true" type="Date" class="form-control"  id="deadline" data-ng-model="project.deadline" placeholder="deadline" required>
                 <div ng-show="submitted && projectForm.deadline.$invalid" class="help-block">
                     <p ng-show="projectForm.deadline.$error.required">Project is required</p>
                 </div>
@@ -35,22 +35,29 @@
         <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.price.$invalid }">
             <label mean-token="'create-username'" class="col-md-3 control-label">Project Budget</label>
                 <div class="col-md-9">
-                    <input name="price" type="text" class="form-control" data-ng-model="project.price" id="price" placeholder="price" required>
+                    <input name="price" ng-readonly="global.user.roles[0]==='user' || project.assingProject === true" type="text" class="form-control" data-ng-model="project.price" id="price" placeholder="price" required>
                     <div ng-show="submitted && projectForm.price.$invalid" class="help-block">
                         <p ng-show="projectForm.price.$error.required">Username is required</p>
                     </div>
                 </div>
         </div>
         <div class="form-group" ng-class="{ 'has-error' : submitted && projectForm.milestone.$invalid }">
-            <label mean-token="'create-username'" class="col-md-3 control-label">Milestone</label>
+            <label mean-token="'create-username'" class="col-md-3 control-label">Milestone(%) </label>
             <div class="col-md-9">
                 <select  name="mileston" data-ng-model="project.mileston" data-ng-options="num for num in numbers" ></select>
             </div>
         </div>
-
-        <!--<div data-ng-controller="FileUploadController" class="form-group">
-            <file-upload file-dest="'/projectFile/'+project._id+'/'" upload-callback="uploadFinished(files)" upload-file-callback="uploadFileCallback(file)"></file-upload>
-        </div>-->
+        <div ng-repeat="files in project.uploadedFiles">
+            <div ng-repeat="file in files">
+                <a data-ng-href="">{{file.fileName}}</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <file-upload fileDest="'/projectFile/'+project._id+'/'" upload-callback="uploadFinished(files)" upload-file-callback="uploadFileCallback(file)"></file-upload>
+        </div>
+        <div ng-repeat="file in files">
+            {{file.name}}
+        </div>
         <div class="form-group">
             <div class="col-md-offset-3 col-md-9">
                 <button mean-token="'create-submit'" type="submit" class="btn btn-info">

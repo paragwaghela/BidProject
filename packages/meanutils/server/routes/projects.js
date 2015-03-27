@@ -21,6 +21,8 @@ module.exports = function(Meanutils, app, auth) {
         .post(auth.requiresLogin, projects.create);
     app.route('/myProjects')
         .post(projects.myProject);
+    app.route('/uploadFiles')
+        .post(projects.uploadFiles);
     app.route('/meanutils/example/projects/:projectId')
         .get(auth.isMongoId, projects.show)
         .put(auth.isMongoId, auth.requiresLogin, hasAuthorization, projects.updateProject)

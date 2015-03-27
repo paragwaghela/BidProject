@@ -25,13 +25,22 @@
         </div>
     </div>
     </div>
-    <div data-ng-if="!project.assingProject">
+    <div ng-repeat="files in project.uploadedFiles">
+        <div ng-repeat="file in files">
+            <a data-ng-href="">{{file.fileName}}</a>
+        </div>
+     </div>
     <div class="form-group" ng-if="project.createdBy === global.user._id">
         <a data-ng-href="#!/meanutils/example/project/update/{{project._id}}">
             <button mean-token="'create-submit'" class="btn btn-info">Update</button>
         </a>
     </div>
+    <div class="form-group" ng-if = "project.assingProjectTo === global.user._id">
+        <a data-ng-href="#!/meanutils/example/project/update/{{project._id}}">
+            <button mean-token="'create-submit'" class="btn btn-info">Update</button>
+        </a>
     </div>
+
     <div class="form-group">
     <div ng-if="allow">
         <div ng-if="global.user.roles == 'user'">
