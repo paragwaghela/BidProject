@@ -1,13 +1,13 @@
 <div class="navbar navbar-inverse navbar-fixed-top"  style="background-color: white" data-ng-include="'/meanutils/views/header.html'"></div>
-<h1 align="left">Create New Menu</h1>
+<h1 align="left">Update Menu</h1>
 <br>
 
-<div align="left" ng-controller="menuController">
+<div align="left" ng-controller="menuController" data-ng-init="findOne()">
     <form name="menuForm" class="form-horizontal col-md-6" role="form" data-ng-submit="createMenu(menuForm.$valid)" novalidate>
         <div class="form-group" ng-class="{ 'has-error' : submitted && menuForm.name.$invalid }">
             <label mean-token="'create-name'" class="col-md-3 control-label">Name of Menu</label>
             <div class="col-md-9">
-                <input name="name" type="text" class="form-control" data-ng-model="menuName" id="name" placeholder="Name of menu" required>
+                <input name="name" type="text" class="form-control" data-ng-model="menu.menuName" id="name" placeholder="Name of menu" required>
                 <div ng-show="submitted && menuForm.name.$invalid" class="help-block">
                     <p ng-show="menuForm.name.$error.required">Name is required</p>
                 </div>
@@ -20,31 +20,33 @@
                 <tr>
                     <th>Title</th>
                     <th>Reference</th>
-                    <th>Permission</th>
                     <th></th>
-                    <th></th>
+                    <th><button type="button" class="btn btn-success" ng-click="addOp()">Add</button></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="submenu in submenu">
-                    <td width="30%"><input name="title" type="text" class="form-control" data-ng-model="submenu.title" id="title" placeholder="Title" required size="10"></td>
-                    <td width="40%"><input name="reference" type="text" class="form-control"  data-ng-model="submenu.reference" id="reference" placeholder="Reference link" required size="30"></td>
-                    <td width="10%">
-                        <input type="checkbox" ng-model="submenu.value1" value="admin"> admin
+                <tr ng-repeat="submenu in menu.submenu">
+                    <td width="35%"><input name="title" type="text" class="form-control" data-ng-model="submenu.title" id="title" placeholder="Title" required size="10"></td>
+                    <td width="50%"><input name="reference" type="text" class="form-control"  data-ng-model="submenu.reference" id="reference" placeholder="Reference link" required size="30"></td>
+                    <td width="10%" ng-repeat="sub in submenu.roles">
+
+                        <input type="checkbox" ng-model="sub" ng-if="sub === 'admin' || sub=== 'user'" ng-checked="sub">
+                        <span ng-if="sub === 'admin' || sub=== 'user'" ng-bind="sub"></span>
                     </td>
-                    <td width="20%"><input type="checkbox" ng-model="submenu.value2" value="user">user</td>
-                    <td width="5%"><button type="button" class="btn btn-success" ng-click="addOp()">Add</button></td>
+                    <td width="10%" ng-show="sh=== true">
+                        <input type="checkbox" ng-model="value1" value="Admin"> Admin
+
+                    </td>
+                    <td width="10%" ng-show="sh=== true"><input type="checkbox" ng-model="value2" value="User">User</td>
                     <td width="5%"><button type="button" class="btn btn-danger" ng-click="deleteOp($index)">Delete</button></td>
                 </tr>
                 </tbody>
             </table>
         </div>
-
-
         <div class="form-group">
             <div class="col-md-offset-3 col-md-9">
                 <button mean-token="'create-submit'" type="submit" class="btn btn-info">
-                   Create Menu
+                    Update Menu
                 </button>
             </div>
         </div>

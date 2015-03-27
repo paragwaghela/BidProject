@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="project in filteredTodos | filter: selected" data-ng-href="#!/projects/{{project._id}}" >
+            <tr ng-repeat="project in filteredTodos | filter: selected || status" data-ng-href="#!/projects/{{project._id}}" >
                 <td><a data-ng-href="#!/meanutils/example/project/{{project._id}}">{{project.title}}</a></td>
                 <td>{{project.discription}}</td>
                 <td>{{project.created|date:'mediumDate'}}</td>
@@ -58,5 +58,5 @@
             </tr>
         </tbody>
     </table>
-    <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" num-pages="numofPages" max-size="maxSize" items-per-page ="itemsPerPage"></pagination>
+    <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" num-pages="numofPages" max-size="maxSize" items-per-page ="itemsPerPage" data-ng-hide="filteredTodos.length < 5 || myProj< 5"></pagination>
 </div>

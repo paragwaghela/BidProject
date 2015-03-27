@@ -38,6 +38,11 @@ angular.module('mean.meanutils').config(['$stateProvider', '$locationProvider',
                     loggedin: checkLoggedOut
                 }
             })
+            .state('projectL', {
+                url: '/meanutils/example/projects/:status',
+                templateUrl: 'meanutils/views/list.html'
+            })
+
             .state('project add', {
                 url: '/meanutils/example/project/add',
                 templateUrl: 'meanutils/views/addProject.html',
@@ -108,7 +113,14 @@ angular.module('mean.meanutils').config(['$stateProvider', '$locationProvider',
                     loggedin: checkLoggedOut
                 }
             })
-
+            .state('menus ', {
+                url: '/meanutils/menu/menuList',
+                templateUrl: 'meanutils/views/menuList.html'
+            })
+            .state('menu by id', {
+                url: '/meanutils/:menuId',
+                templateUrl: 'meanutils/views/updateMenu.html'
+            })
             .state('menu ', {
                 url: '/meanutils/menu/addMenu',
                 templateUrl: 'meanutils/views/addMenu.html',

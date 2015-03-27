@@ -9,7 +9,7 @@ module.exports = {
     debug: false
   },
   app: {
-    name: 'Freelancer'
+    name: 'BidProject'
   },
   facebook: {
     clientID: 'DEFAULT_APP_ID',

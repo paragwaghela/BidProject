@@ -52,18 +52,33 @@ exports.count = function (req, res , next) {
 
 exports.all=function(req,res){
     var i = req.param('begin');
+    var j = req.param('status');
+    if(j) {
+        Project.find({status: j}).sort('-created').limit(10).exec(function(err,projects){
+            if(err){
+                return res.status(500).json({
+                    error: 'Cannot list the articles'
+                });
+            }else
+                var arr = [{projects: projects, count: count}];
 
-  Project.find().skip(i).sort('-created').limit(10).exec(function(err,projects){
-      if(err){
-          return res.status(500).json({
-              error: 'Cannot list the articles'
-          });
-      }else
-      var arr = [{projects: projects, count: count}];
+
+            res.send(arr);
+        });
+
+    } else {
+        Project.find().skip(i).sort('-created').limit(10).exec(function(err,projects){
+            if(err){
+                return res.status(500).json({
+                    error: 'Cannot list the articles'
+                });
+            }else
+                var arr = [{projects: projects, count: count}];
 
 
-        res.send(arr);
-  });
+            res.send(arr);
+        });
+    }
 
 };
 
