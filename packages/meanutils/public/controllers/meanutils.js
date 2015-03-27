@@ -6,8 +6,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
         $scope.project = {};
         $scope.menuUtil = [];
-        $scope.status='Assing';
-
+        $scope.status= $stateParams.status;
         $scope.filteredTodos = [];
         $scope.imageStoreTemp = 'meanutils/assets/img';
         $scope.imgHight = 200;
@@ -36,15 +35,17 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.currentPage = 1;
         $scope.maxSize = 2;
 
-        $scope.itemsPerPage = 5;
+        $scope.itemsPerPage = 10;
         $scope.files = [];
 
         var pagCount,
             begin = 0;
             var i = 0,j=0;
 
-        ProjectService.query(function(proj){
-            //console.log("MY Projects",proj)
+        ProjectService.query({
+            status: $scope.status
+        }, function(proj){
+            console.log("MY Projects",proj)
             $scope.totalProj = proj[0].projects.length;
 
             angular.forEach(proj[0].projects,function(val){
@@ -69,9 +70,10 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                 pagCount = projects[0].count;
 
                 $scope.totalItems = pagCount;
+
                 $scope.currentPage = 1;
                 $scope.maxSize = 2;
-                $scope.itemsPerPage = 5;
+                $scope.itemsPerPage = 10;
                 $scope.numofPages = Math.ceil($scope.totalItems / $scope.itemsPerPage);
 
                 $scope.$watch('currentPage + numPerPage', function () {
@@ -83,12 +85,10 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                         begin: begin
                     }, function (data) {
                         $scope.filteredTodos = data[0].projects;
-
                     });
                 });
             });
         };
-
 
         $scope.addProject = function (isValid) {
 

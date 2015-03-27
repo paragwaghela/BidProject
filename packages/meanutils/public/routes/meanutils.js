@@ -12,6 +12,11 @@ angular.module('mean.meanutils').config(['$stateProvider', '$locationProvider',
                 url: '/meanutils/example/projects',
                 templateUrl: 'meanutils/views/list.html'
             })
+            .state('projectL', {
+                url: '/meanutils/example/projects/:status',
+                templateUrl: 'meanutils/views/list.html'
+            })
+
             .state('project add', {
                 url: '/meanutils/example/project/add',
                 templateUrl: 'meanutils/views/addProject.html'
