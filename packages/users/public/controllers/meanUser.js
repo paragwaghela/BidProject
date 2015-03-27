@@ -58,7 +58,7 @@ angular.module('mean.users')
                 window.location = response.redirect;
               }
             } else {
-              $location.url('/meanutils');
+              $location.url('/');
             }
           })
           .error(function() {

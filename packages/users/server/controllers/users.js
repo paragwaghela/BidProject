@@ -23,7 +23,7 @@ exports.authCallback = function(req, res) {
  */
 exports.signin = function(req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect('/meanutils');
+    return res.redirect('/');
   }
   res.redirect('#!/login');
 };
