@@ -52,8 +52,11 @@
                 <a data-ng-href="">{{file.fileName}}</a>
             </div>
         </div>
-        <div class="form-group">
-            <file-upload fileDest="'/projectFile/'+project._id+'/'" upload-callback="uploadFinished(files)" upload-file-callback="uploadFileCallback(file)"></file-upload>
+
+        <div ng-if="!global.user.roles[0].equals('user')">
+            <div class="form-group"  >
+                <file-upload fileDest="'/projectFile/'+project._id+'/'" upload-callback="uploadFinished(files)" upload-file-callback="uploadFileCallback(file)"></file-upload>
+            </div>
         </div>
         <div ng-repeat="file in files">
             {{file.name}}
