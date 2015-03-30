@@ -16,13 +16,18 @@ Meanutils.register(function(app, auth, database) {
     //We enable routing. By default the Package Object is passed to the routes
     Meanutils.routes(app, auth, database);
 
-    Meanutils.aggregateAsset('js', '../lib/danialfarid-angular-file-upload/dist/angular-file-upload-shim.min.js', {
+    /*Meanutils.aggregateAsset('js', '../lib/danialfarid-angular-file-upload/dist/angular-file-upload-shim.min.js', {
         absolute: false
     });
     Meanutils.aggregateAsset('js', '../lib/danialfarid-angular-file-upload/dist/angular-file-upload.min.js', {
         absolute: false
+    });*/
+    Meanutils.aggregateAsset('js', '../lib/danialfarid-angular-file-upload/demo/war/js/angular-file-upload-html5-shim.js', {
+        absolute: false
     });
-
+    Meanutils.aggregateAsset('js', '../lib/danialfarid-angular-file-upload/demo/war/js/angular-file-upload.js', {
+        absolute: false
+    });
     Meanutils.aggregateAsset('css', '../css/meanutils.css', {
         absolute: false
     });
