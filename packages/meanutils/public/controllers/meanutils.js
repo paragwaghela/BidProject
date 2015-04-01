@@ -238,6 +238,12 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         $scope.updateProjectDetail = function (isValid) {
             if (isValid) {
                 var project = $scope.project;
+                if (project.mileston == 100) {
+                    project.status = "Completed";
+                }
+                else {
+                    project.status = "Assigned";
+                }
                /* var $files=$scope.files
                     for (var i = 0; i < $files.length; i++) {
                         var file = $files[i];
