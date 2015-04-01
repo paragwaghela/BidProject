@@ -22,7 +22,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
         $scope.project = {};
         $scope.menuUtil = [];
-        $scope.status= $stateParams.status || 'Open';
+        $scope.status= $stateParams.status || '';
         $scope.filteredTodos = [];
         $scope.imageStoreTemp = 'meanutils/assets/img';
         $scope.imgHight = 200;

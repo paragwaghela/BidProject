@@ -67,7 +67,7 @@ exports.all=function(req,res){
         });
 
     } else  {
-        Project.find({}).sort('-created').exec(function(err,projects){
+        Project.find({}).skip(i).sort('-created').limit(10).exec(function(err,projects){
             if(err){
                 return res.status(500).json({
                     error: 'Cannot list the projects'
