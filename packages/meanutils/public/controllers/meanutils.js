@@ -62,16 +62,16 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             var i = 0,j=0;
 
         ProjectService.query({
-            status: $scope.status
+
         }, function(proj){
-
             $scope.totalProj = proj[0].count;
-
             angular.forEach(proj[0].projects,function(val){
-                if($scope.global.user._id === val.assingProjectTo){
-                    i = i + 1;
-                } else if(status === 'completed'){
-                    j = j + 1;
+                if($scope.global.user._id === val.assingProjectTo) {
+                    if(val.status == 'Assigned') {
+                        i = i + 1;
+                    } else if (val.status == 'Completed') {
+                        j = j + 1;
+                    }
                 }
             });
             $scope.myProj = i;
@@ -100,7 +100,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                     var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
 
                     ProjectService.query({
-                        begin: begin
+                        begin: begin,status: $scope.status
                     }, function (data) {
                         $scope.filteredTodos = data[0].projects;
                     });
