@@ -27,7 +27,8 @@ Meanutils.register(function(app, auth, database) {
         absolute: false
     });
 
-    Meanutils.angularDependencies(['angularFileUpload']);
+    Meanutils.angularDependencies(['angularFileUpload','highcharts-ng']);
+
     //We are adding a link to the main menu for all authenticated users
     Meanutils.menus.add({
         title: 'MeanUtilities',

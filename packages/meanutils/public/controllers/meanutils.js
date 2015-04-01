@@ -4,6 +4,22 @@
 angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$location', '$http', 'Global', 'MenuService', 'ProjectService', 'userService', '$stateParams','$upload',
     function ($scope, $location, $http, Global, MenuService, ProjectService, userService, $stateParams,$upload) {
 
+        $scope.chartConfig = {
+            options: {
+                chart: {
+                    type: 'bar'
+                }
+            },
+            series: [{
+                data: [10, 15, 12, 8, 7]
+            }],
+            title: {
+                text: 'Hello'
+            },
+
+            loading: false
+        }
+
         $scope.project = {};
         $scope.menuUtil = [];
         $scope.status= $stateParams.status;
@@ -49,7 +65,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             status: $scope.status
         }, function(proj){
             console.log("MY Projects",proj)
-            $scope.totalProj = proj[0].projects.length;
+            $scope.totalProj = proj[0].count;
 
             angular.forEach(proj[0].projects,function(val){
                 if($scope.global.user._id === val.assingProjectTo){
