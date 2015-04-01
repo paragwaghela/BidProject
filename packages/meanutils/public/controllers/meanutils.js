@@ -22,7 +22,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
         $scope.project = {};
         $scope.menuUtil = [];
-        $scope.status= $stateParams.status;
+        $scope.status= $stateParams.status || 'Open';
         $scope.filteredTodos = [];
         $scope.imageStoreTemp = 'meanutils/assets/img';
         $scope.imgHight = 200;
@@ -82,7 +82,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
 
         $scope.all = function () {
             ProjectService.query({
-                begin: begin
+                begin: begin,status: $scope.status
             }, function (projects) {
 
                 pagCount = projects[0].count;
