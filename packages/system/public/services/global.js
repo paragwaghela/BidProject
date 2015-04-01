@@ -5,8 +5,6 @@ angular.module('mean.system').factory('Global', [
 
   function() {
     var _this = this;
-      console.log("Global factory",this);
-
     _this._data = {
       user: window.user,
       authenticated: false,

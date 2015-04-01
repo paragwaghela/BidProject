@@ -37,7 +37,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         });
 
         $scope.global = Global;
-        console.log( $scope.global.user);
+
         $scope.currentDate = new Date();
 
         $scope.myInterval = 2000;
@@ -64,7 +64,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
         ProjectService.query({
             status: $scope.status
         }, function(proj){
-            console.log("MY Projects",proj)
+
             $scope.totalProj = proj[0].count;
 
             angular.forEach(proj[0].projects,function(val){
@@ -76,7 +76,6 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
             });
             $scope.myProj = i;
             $scope.compProj = j;
-            console.log("Single val", i);
 
         });
 
@@ -242,7 +241,7 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                /* var $files=$scope.files
                     for (var i = 0; i < $files.length; i++) {
                         var file = $files[i];
-                        console.log($upload);
+
                         $scope.upload = $upload.upload({
                             url: 'fileUpload/upload',
                             headers: {
@@ -253,11 +252,11 @@ angular.module('mean.meanutils').controller('MeanutilsController', ['$scope', '$
                             },
                             file: file
                         }).progress(function (evt) {
-                            console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+
                         }).success(function (data, status, headers, config) {
                             if (data.success) {
                                 files.push(data.file.name);
-                                console.log(files);
+
                             }
 
                         });
