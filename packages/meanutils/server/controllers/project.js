@@ -109,7 +109,7 @@ exports.uploadFiles = function(req,res){
     Project.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.projectId)},{$push:{uploadedFiles : req.body.uploadedFiles}}).exec(function(err,data) {
         if (err) {
             return res.status(500).json({
-                error: 'Cannot add the bid'
+                error: 'Cannot update'
             });
         } else {
             res.json(data);
